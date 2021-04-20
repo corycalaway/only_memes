@@ -1,0 +1,20 @@
+{
+  "name": "only_memes",
+  "version": "1.0.0",
+  "description": "Only Memes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corycalaway/only_memes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/corycalaway/only_memes/issues"
+  },
+  "homepage": "https://github.com/corycalaway/only_memes#readme"
+}
