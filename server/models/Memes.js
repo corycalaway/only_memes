@@ -20,4 +20,5 @@ const memeSchema = new Schema({
 });
 
 const Memes = mongoose.model("Memes", memeSchema);
+
 module.exports = Memes;
