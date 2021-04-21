@@ -15,10 +15,9 @@ const memeSchema = new Schema({
   category: {
     type: Schema.Types.ObjectId,
     ref: "Category",
-    required: true,
   },
 });
 
-const Memes = mongoose.model("Memes", memeSchema);
+const Meme = mongoose.model("Memes", memeSchema);
 
-module.exports = Memes;
+module.exports = Meme;
