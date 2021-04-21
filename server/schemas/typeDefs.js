@@ -1,17 +1,17 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-type Category {
+  type Category {
     name: String
-}
-type Meme {
+  }
+  type Meme {
     _id: ID
-
-    title: String
+    image: String
+    title: String!
     rarity: String
     category: [Category]
-}
-type User {
+  }
+  type User {
     _id: ID
     username: String
     email: String
@@ -19,23 +19,27 @@ type User {
     memes: [Meme]
   }
 
-type Query {
+  type Query {
     user: User
     users: [User]
-   memes: [Meme]
-}
+    memes: [Meme]
+  }
 
-type Auth {
+  type Auth {
     token: ID
     user: User
   }
 
-type Mutation {
-    addUser(username: String!, email: String!, password: String!, credit: Int = 30): Auth
+  type Mutation {
+    addUser(
+      username: String!
+      email: String!
+      password: String!
+      credit: Int = 30
+    ): Auth
     login(email: String!, password: String!): Auth
     databaseMeme(title: String!, rarity: String): Meme
   }
-
 `;
 
 module.exports = typeDefs;

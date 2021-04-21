@@ -8,13 +8,17 @@ const memeSchema = new Schema({
     required: true,
     trim: true,
   },
+  image: {
+    type: String,
+  },
   rarity: {
     type: String,
     trim: true,
   },
   category: {
-    type: Schema.Types.ObjectId,
-    ref: "Category",
+    type: String,
+    required: true,
+    trim: true,
   },
 });
 
