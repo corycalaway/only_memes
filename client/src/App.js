@@ -1,13 +1,11 @@
 import React from "react";
-//import { Provider } from "react-redux";
-import { Container } from "react-bootstrap";
-//import { store } from "./utils/redux";
+import NavHeader from "./components/NavHeader";
 
 function App() {
   return (
-    <Container className="App">
-      <h1>Only Memes</h1>
-    </Container>
+    <main>
+      <NavHeader />
+    </main>
   );
 }
 
