@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const { Schema } = mongoose;
 
-const memeSchema = require("./Memes");
+const Meme = require("./Memes");
 
 const userSchema = new Schema(
   {
@@ -26,13 +26,9 @@ const userSchema = new Schema(
     credit: {
       type: Number,
     },
-    memes: [memeSchema],
+    memes: [Meme.schema],
   },
-  {
-    toJSON: {
-      virtuals: true,
-    },
-  }
+  
 );
 
 userSchema.pre("save", async function (next) {
