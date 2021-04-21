@@ -7,7 +7,7 @@ const typeDefs = gql`
   type Meme {
     _id: ID
     image: String
-    title: String!
+    title: String
     rarity: String
     category: [Category]
   }
@@ -38,7 +38,13 @@ const typeDefs = gql`
       credit: Int = 30
     ): Auth
     login(email: String!, password: String!): Auth
-    databaseMeme(title: String!, image: String, rarity: String, category: String!): Meme
+    databaseMeme(
+      title: String!
+      image: String
+      rarity: String
+      category: String
+    ): Meme
+    addCollection(_id: ID!): Meme
   }
 `;
 

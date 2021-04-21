@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const memeSchema = new Schema({
   title: {
     type: String,
-    required: true,
+
     trim: true,
   },
   image: {
@@ -17,7 +17,7 @@ const memeSchema = new Schema({
   },
   category: {
     type: String,
-    required: true,
+
     trim: true,
   },
 });
