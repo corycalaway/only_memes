@@ -5,6 +5,7 @@ type Category {
     name: String
 }
 type Meme {
+    _id: ID
     memeID: String
     title: String
     rarity: String
