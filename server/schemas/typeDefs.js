@@ -38,7 +38,7 @@ const typeDefs = gql`
       credit: Int = 30
     ): Auth
     login(email: String!, password: String!): Auth
-    databaseMeme(title: String!, rarity: String): Meme
+    databaseMeme(title: String!, image: String, rarity: String, category: String!): Meme
   }
 `;
 
