@@ -5,6 +5,7 @@ type Category {
     name: String
 }
 type Meme {
+    memeID: String
     title: String
     rarity: String
     category: [Category]
@@ -20,7 +21,7 @@ type User {
 type Query {
     user: User
     users: [User]
-   
+   memes: [Meme]
 }
 
 type Auth {
@@ -31,6 +32,7 @@ type Auth {
 type Mutation {
     addUser(username: String!, email: String!, password: String!, credit: Int = 30): Auth
     login(email: String!, password: String!): Auth
+    databaseMeme(memeID: String!, title: String!, rarity: String): Meme
   }
 
 `;

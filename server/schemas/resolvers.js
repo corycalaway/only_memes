@@ -1,4 +1,4 @@
-const { User, Memes, Category } = require('../models');
+const { User, Meme, Category } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -8,6 +8,12 @@ const resolvers = {
             return User.find()
                 .select('-__v -password')
                 .populate('meme');
+
+        },
+        memes: async () => {
+            return Meme.find()
+                .select('-__v -password')
+
 
         }
 
@@ -37,6 +43,17 @@ const resolvers = {
             const token = signToken(user);
 
             return { token, user };
+        },
+        databaseMeme: async (parent, args) => {
+
+            console.log(args)
+            console.log(Meme)
+            const meme = await Meme.create(args);
+            console.log(meme)
+            // const token = signToken(user);
+
+            // return { token, user };
+            return { meme }
         }
     }
 }
