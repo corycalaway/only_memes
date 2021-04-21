@@ -12,9 +12,9 @@ const typeDefs = gql`
     category: [Category]
   }
   type User {
-    _id: ID
-    username: String
-    email: String
+    _id: ID!
+    username: String!
+    email: String!
     credit: Int
     memes: [Meme]
   }
@@ -38,7 +38,7 @@ const typeDefs = gql`
       credit: Int = 30
     ): Auth
     login(email: String!, password: String!): Auth
-    databaseMeme(title: String!, image: String, rarity: String, category: String!): Meme
+    databaseMeme(title: String!, rarity: String): Meme
   }
 `;
 
