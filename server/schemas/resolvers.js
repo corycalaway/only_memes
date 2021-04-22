@@ -46,12 +46,12 @@ const resolvers = {
       // return { token, user };
       return  meme ;
     },
-    addCollection: async (parent, { _id }, context) => {
-      console.log(_id);
+    addCollection: async (parent, args, context) => {
+      console.log(args);
       console.log(context.user)
       if (context.user) {
 
-         const newCollection = new Meme({ _id });
+         const newCollection = new Meme(args);
         //     {_id: context.user._id },
         //   {$push: { memes: _id }},
         //   { new: true }
