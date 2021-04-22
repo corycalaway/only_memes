@@ -42,7 +42,7 @@ const typeDefs = gql`
       rarity: String
       category: String
     ): Meme
-    addCollection(_id: ID!): User
+    addCollection(memeId: ID!): User
   }
 
   type Auth {

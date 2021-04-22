@@ -26,7 +26,10 @@ const userSchema = new Schema(
     credit: {
       type: Number,
     },
-    memes: [Meme.schema],
+    memes: [{
+        type: Schema.Types.ObjectId,
+        ref: "Memes"
+    }],
   },
   
 );
