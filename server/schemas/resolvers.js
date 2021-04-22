@@ -44,14 +44,22 @@ const resolvers = {
       // const token = signToken(user);
 
       // return { token, user };
-      return { meme };
+      return  meme ;
     },
     addCollection: async (parent, { _id }, context) => {
       console.log(_id);
+      console.log(context.user)
       if (context.user) {
-        const newCollection = await User.findByIdAndUpdate(context.user._id, {
-          $push: { memes: _id },
-        });
+
+         const newCollection = new Meme({ _id });
+        //     {_id: context.user._id },
+        //   {$push: { memes: _id }},
+        //   { new: true }
+        // );
+        console.log(newCollection)
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { memes: newCollection }});
+
 
         return newCollection;
       }
