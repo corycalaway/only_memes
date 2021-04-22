@@ -46,21 +46,23 @@ const resolvers = {
       // return { token, user };
       return  meme ;
     },
-    addCollection: async (parent, args, context) => {
-      console.log(args);
+    addCollection: async (parent, {_id}, context) => {
+
       console.log(context.user)
       if (context.user) {
 
-         const newCollection = new Meme(args);
+        //  const newCollection = new Meme(_id);
         //     {_id: context.user._id },
         //   {$push: { memes: _id }},
         //   { new: true }
         // );
-        console.log(newCollection)
+      
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { memes: newCollection }});
+        let newCollection = await User.findByIdAndUpdate(
+            {_id: context.user._id}, { $addToSet: { memes: {_id} }},
+            ).populate('memes');
 
-
+            console.log(newCollection)
         return newCollection;
       }
 
