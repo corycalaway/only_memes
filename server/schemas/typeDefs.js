@@ -1,15 +1,16 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+
   type Category {
     name: String
   }
   type Meme {
     _id: ID
     image: String
-    title: String!
+    title: String
     rarity: String
-    category: [Category]
+    category: String
   }
   type User {
     _id: ID
@@ -25,10 +26,7 @@ const typeDefs = gql`
     memes: [Meme]
   }
 
-  type Auth {
-    token: ID
-    user: User
-  }
+ 
 
   type Mutation {
     addUser(
@@ -38,7 +36,18 @@ const typeDefs = gql`
       credit: Int = 30
     ): Auth
     login(email: String!, password: String!): Auth
-    databaseMeme(title: String!, image: String, rarity: String, category: String!): Meme
+    databaseMeme(
+      title: String!
+      image: String
+      rarity: String
+      category: String
+    ): Meme
+    addCollection(memeId: ID!): User
+  }
+
+  type Auth {
+    token: ID
+    user: User
   }
 `;
 

@@ -3,10 +3,10 @@ import { Nav, Navbar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function NavHeader() {
-  const tabs = ["Home", "My Memes", "Community", 'About Us', "SignIn/SignOut"];
+  const tabs = ["Home", "My Memes", "Community", "About Us", "SignIn/SignOut"];
   return (
     <Navbar sticky="top" bg="dark" variant="dark" expand="lg">
-      <Navbar.Brand>OnlyMemes!</Navbar.Brand>
+      <Navbar.Brand href="#Home">OnlyMemes!</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">

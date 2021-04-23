@@ -3,7 +3,7 @@ import { Jumbotron, Button, Container, Row } from "react-bootstrap";
 
 const Aboutus = () => {
   return (
-    <Container>
+    <Container fluid>
       <Jumbotron>
         <Row className="justify-content-center">
           <h3>Kyle</h3>
@@ -20,8 +20,12 @@ const Aboutus = () => {
             as well as to work in an environment that aligns with my values and
             allows me to strive for an overall fulfilling life.
           </p>
-          <Button variant="dark" href="https://github.com/Frankenshtien">
-            Check me out on GitHub!<i className="fab fa-github"></i>
+          <Button
+            variant="dark"
+            href="https://github.com/Frankenshtien"
+            target="blank"
+          >
+            Check me out on GitHub! <i className="fab fa-github"></i>
           </Button>
         </Row>
         <Row className="justify-content-center">
@@ -36,8 +40,12 @@ const Aboutus = () => {
             the given subject. Consistently able to motivate and build profound
             confidence in others performance and abilities.
           </p>
-          <Button variant="dark" href="https://github.com/paulchang15">
-            Check me out on GitHub!<i className="fab fa-github"></i>
+          <Button
+            variant="dark"
+            href="https://github.com/paulchang15"
+            target="blank"
+          >
+            Check me out on GitHub! <i className="fab fa-github"></i>
           </Button>
         </Row>
         <Row className="justify-content-center">
@@ -52,8 +60,12 @@ const Aboutus = () => {
             the given subject. Consistently able to motivate and build profound
             confidence in others performance and abilities.
           </p>
-          <Button variant="dark" href="https://github.com/corycalaway">
-            Check me out on GitHub!<i className="fab fa-github"></i>
+          <Button
+            variant="dark"
+            href="https://github.com/corycalaway"
+            target="blank"
+          >
+            Check me out on GitHub! <i className="fab fa-github"></i>
           </Button>
         </Row>
         <Row className="justify-content-center">
@@ -76,8 +88,12 @@ const Aboutus = () => {
             fast-paced, quality-driven team to build better experiences on the
             web.
           </p>
-          <Button variant="dark" href="https://github.com/bret-short">
-            Check me out on GitHub!<i className="fab fa-github"></i>
+          <Button
+            variant="dark"
+            href="https://github.com/bret-short"
+            target="blank"
+          >
+            Check me out on GitHub! <i className="fab fa-github"></i>
           </Button>
         </Row>
       </Jumbotron>
