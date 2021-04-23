@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const QUERY_USER = gql`
   {
-    user {
+    users {
       _id
       username
       credit
@@ -13,6 +13,18 @@ export const QUERY_USER = gql`
         rarity
         category
       }
+    }
+  }
+`;
+
+export const QUERY_MEMES = gql`
+  {
+    memes {
+      _id
+      image
+      title
+      rarity
+      category
     }
   }
 `;

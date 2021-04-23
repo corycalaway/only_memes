@@ -1,7 +1,6 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-
   type Category {
     name: String
   }
@@ -26,8 +25,6 @@ const typeDefs = gql`
     memes: [Meme]
   }
 
- 
-
   type Mutation {
     addUser(
       username: String!
@@ -35,7 +32,7 @@ const typeDefs = gql`
       password: String!
       credit: Int = 30
     ): Auth
-    login(email: String!, password: String!): Auth
+    login(username: String!, password: String!): Auth
     databaseMeme(
       title: String!
       image: String
