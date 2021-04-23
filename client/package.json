@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
     "@reduxjs/toolkit": "^1.5.1",
