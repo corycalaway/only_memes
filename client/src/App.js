@@ -3,10 +3,10 @@ import NavHeader from "./components/NavHeader";
 import Aboutus from "./pages/Aboutus";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Home from "./pages/Home";
+
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
-
-import Cardpack from "./components/Cardpack";
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -25,10 +25,10 @@ function App() {
     <ApolloProvider client={client}>
       <main>
         <NavHeader />
+        <Home />
         <Aboutus />
         <Signup />
         <Login />
-        <Cardpack />
       </main>
     </ApolloProvider>
   );
