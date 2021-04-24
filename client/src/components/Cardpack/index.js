@@ -14,23 +14,38 @@ const Cardpack = () => {
     const handleFormSubmit = async () => {
     var { memes } = data
         console.log(memes)
+        let highPrize = [];
+        let lowPrize = [];
         for (let i = 0; i < memes.length; i++){
 
-            console.log(memes[i].rarity)
-            if (memes[i].rarity === "Legendary") {
-                console.log(memes[i]) 
-                console.log("Legendary")
-            } else if (memes[i].rarity === "Epic") {
-                console.log(memes[i])
-                console.log("Epic")
-            } else if (memes[i].rarity === "Worthless") {
-                console.log(memes[i])
-                console.log("Worthless")
-            } else {
-                console.log(memes[i])
-                console.log("Trash")
+          
+            if (memes[i].rarity === "Legendary" || memes[i].rarity === "Epic") {
+              
+                highPrize.push(memes[i])
+            }
+              else {
+             
+                lowPrize.push(memes[i])
             }
         }
+        console.log(highPrize)
+        console.log(lowPrize)
+
+        let highSelect = Math.floor(Math.random() * highPrize.length + 1) - 1
+        let lowSelect = Math.floor(Math.random() * highPrize.length + 1) - 1
+        let lowSelect2 = Math.floor(Math.random() * highPrize.length + 1) - 1
+    
+        while(lowSelect === lowSelect2) {
+            lowSelect2 = Math.floor(Math.random() * highPrize.length + 1) - 1
+        }
+
+        let addOne = highPrize[highSelect]
+        let addTwo = lowPrize[lowSelect]
+        let addThree = lowPrize[lowSelect2]
+        // add collection to user
+        console.log(addOne)
+        console.log(addTwo)
+        console.log(addThree)
 
 
     };
