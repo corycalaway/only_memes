@@ -8,7 +8,7 @@ db.once('open', async () => {
     { 
       title: 'Its Always Sunny: Poor Meme',
       image: "https://res.cloudinary.com/accordingtocloud/image/upload/v1619142065/it_s-always-sunny-poor_eh1nwo.jpg",
-        rarity: "Legindary",
+        rarity: "Legendary",
         category: "Fun" 
     },
     { 

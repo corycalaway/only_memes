@@ -17,9 +17,9 @@ const Cardpack = () => {
         for (let i = 0; i < memes.length; i++){
 
             console.log(memes[i].rarity)
-            if (memes[i].rarity === "Legindary") {
+            if (memes[i].rarity === "Legendary") {
                 console.log(memes[i]) 
-                console.log("Legindary")
+                console.log("Legendary")
             } else if (memes[i].rarity === "Epic") {
                 console.log(memes[i])
                 console.log("Epic")
@@ -32,7 +32,7 @@ const Cardpack = () => {
             }
         }
 
-        
+
     };
 
     return (
