@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 
+import Cardpack from "./components/Cardpack";
+
 const client = new ApolloClient({
   request: (operation) => {
     const token = localStorage.getItem("id_token");
@@ -26,6 +28,7 @@ function App() {
         <Aboutus />
         <Signup />
         <Login />
+        <Cardpack />
       </main>
     </ApolloProvider>
   );
