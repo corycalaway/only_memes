@@ -1,9 +1,38 @@
 import React from "react";
-import { Nav, Navbar } from "react-bootstrap";
+import Auth from "../../utils/auth";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 function NavHeader() {
-  const tabs = ["Home", "My Memes", "Community", "About Us", "SignIn/SignOut"];
+  const tabs = ["Home", "My Memes", "Community", "About Us"];
+
+  let Logged = () => {
+    if (Auth.loggedIn()) {
+      console.log(Auth.loggedIn);
+      return (
+        <>
+          <Nav.Link href="/" onClick={() => Auth.logout()}>
+            Logout
+          </Nav.Link>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Nav.Link>
+            Signup
+            {/* <Link to="/Signup">SignUp</Link> */}
+          </Nav.Link>
+          <Nav.Link>
+            Login
+            {/* <Link to="/Login">Login</Link> */}
+          </Nav.Link>
+        </>
+      );
+    }
+  };
+
   return (
     <Navbar sticky="top" bg="dark" variant="dark" expand="lg">
       <Navbar.Brand href="#Home">OnlyMemes!</Navbar.Brand>
@@ -20,6 +49,8 @@ function NavHeader() {
             </Nav.Link>
           ))}
         </Nav>
+        <NavDropdown.Divider />
+        <Nav>{Logged()}</Nav>
       </Navbar.Collapse>
     </Navbar>
   );
