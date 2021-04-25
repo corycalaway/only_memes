@@ -9,7 +9,6 @@ function NavHeader() {
 
   let Logged = () => {
     if (Auth.loggedIn()) {
-      console.log(Auth.loggedIn);
       return (
         <>
           <Nav.Link href="/" onClick={() => Auth.logout()}>
@@ -33,6 +32,18 @@ function NavHeader() {
     }
   };
 
+  let Profile = () => {
+    if (Auth.loggedIn()) {
+      return (
+        <>
+          <Nav.Link>My Memes</Nav.Link>
+        </>
+      );
+    } else {
+      return;
+    }
+  };
+
   return (
     <Navbar sticky="top" bg="dark" variant="dark" expand="lg">
       <Navbar.Brand href="#Home">OnlyMemes!</Navbar.Brand>
@@ -48,6 +59,7 @@ function NavHeader() {
               {tab}
             </Nav.Link>
           ))}
+          {Profile()}
         </Nav>
         <NavDropdown.Divider />
         <Nav>{Logged()}</Nav>
