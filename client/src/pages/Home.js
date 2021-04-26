@@ -8,20 +8,7 @@ const Home = () => {
   return (
     <Container fluid>
       <Jumbotron>
-        <Row className="justify-content-center">
-          <Card style={{ width: "35rem" }}>
-            <Row className="justify-content-center">
-              <h3>Purchase a Pack!</h3>
-            </Row>
-            <Row className="justify-content-center">
-              <Row className="justify-content-center">
-                {" "}
-                <Cardpack />
-              </Row>
-            </Row>
-            <Row className="justify-content-center"></Row>
-          </Card>
-        </Row>
+        <Cardpack />
       </Jumbotron>
     </Container>
   );
