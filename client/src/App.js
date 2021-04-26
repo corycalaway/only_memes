@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -24,14 +25,25 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <main>
-        <NavHeader />
-        {/* <Profile /> */}
-        <Home />
-        <Aboutus />
-        <Signup />
-        <Login />
-      </main>
+      <Router>
+        <main>
+          <NavHeader />
+          {/* <Profile /> */}
+          {/* <Home /> */}
+          {/* <Aboutus /> */}
+          {/* <Signup /> */}
+          {/* <Login /> */}
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/aboutus" component={Aboutus} />
+            {/* <Route exact path="/products/:id" component={Detail} />
+            <Route exact path="/success" component={Success} /> */}
+            {/* <Route component={NoMatch} /> */}
+          </Switch>
+        </main>
+      </Router>
     </ApolloProvider>
   );
 }
