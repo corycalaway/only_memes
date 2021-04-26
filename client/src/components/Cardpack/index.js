@@ -16,26 +16,32 @@ const Cardpack = () => {
     // const user = userData?.me || userData?.user || {};
 
     const { loading, data: userData } = useQuery(QUERY_ME)
-    const [ enoughCredits, updateCredits] = useState({})
+    const [enoughCredits, updateCredits] = useState({})
 
 
     const handleFormSubmit = async () => {
-        console.log(userData.me.credit)
+        let tempCredit;
+
         const token = Auth.loggedIn() ? Auth.getToken() : null;
-        let tempCredit = userData.me.credit
+        if (Auth.loggedIn()) {
+            tempCredit = userData.me.credit
+        } else {
+            tempCredit = "notloggedin"
+            console.log(tempCredit)
+            updateCredits(tempCredit)
+        }
 
+        if (tempCredit <= 0) {
+            console.log(tempCredit)
 
-        if (userData.me.credit <= 0) {
-               console.log(tempCredit)
-          
             updateCredits(tempCredit)
 
-              
-           
-           console.log(enoughCredits)
+
+
+            console.log(enoughCredits)
         } else {
-            
-           
+
+
             if (!token) {
                 console.log("no token");
             } else {
@@ -127,15 +133,23 @@ const Cardpack = () => {
                         </Row>
                     </Row>
 
-                    {enoughCredits <= 0 && 
+                    {enoughCredits <= 0 &&
                         <Row className="justify-content-center">
                             <div>
                                 <h3>You do not have enough Credits!</h3>
 
                             </div>
-                        </Row> 
+                        </Row>
                     }
 
+                    {enoughCredits === "notloggedin" &&
+                        <Row className="justify-content-center">
+                            <div>
+                                <h3>You must be logged in to purchase!</h3>
+
+                            </div>
+                        </Row>
+                    }
 
                     <Row className="justify-content-center"></Row>
                 </Card>
