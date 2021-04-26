@@ -19,8 +19,11 @@ const typeDefs = gql`
     memes: [Meme]
   }
 
+   
+
   type Query {
     user: User
+    
     users: [User]
     memes: [Meme]
   }
@@ -47,11 +50,7 @@ const typeDefs = gql`
     user: User
   }
 
-  type Query {
-    user {
-      _id
-    }
-  }
+ 
 `;
 
 module.exports = typeDefs;
