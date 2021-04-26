@@ -7,14 +7,15 @@ import { QUERY_MEMES, QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
 import cardpackImage from "../../assets/img/memepack.png";
 import {useSelector, useDispatch} from 'react-redux';
-import {addNewMemes} from '../../utils/actions/'
+import { addNewMemes, cardReset} from '../../utils/actions/'
 
 
 const Cardpack = () => {
     const { data } = useQuery(QUERY_MEMES);
     const dispatch = useDispatch();
 
-    
+    const memedisplay = useSelector(state => state.memeDisplayReducer)
+   
     // const { userData } = useQuery(QUERY_USER)
     // const { username: userParam } = useParams();
 
@@ -27,7 +28,9 @@ const Cardpack = () => {
 
     const handleFormSubmit = async () => {
         let tempCredit;
-        console.log(dispatch(addNewMemes("test")))
+       console.log(memedisplay)
+    //    let reset = []
+    //     dispatch(cardReset(reset))
         const token = Auth.loggedIn() ? Auth.getToken() : null;
         if (Auth.loggedIn()) {
             tempCredit = userData.me.credit
@@ -82,14 +85,29 @@ const Cardpack = () => {
                 packMemes.push(lowPrize[lowSelect]._id);
                 packMemes.push(lowPrize[lowSelect2]._id);
 
+                // async function dispatchMemes() {
+
+                   
+                //     console.log(result)
+
+                    
+                // }
+                const result = await dispatch(addNewMemes(packMemes))
+                // dispatch(addNewMemes(packMemes))
+                // dispatchMemes()
                 console.log(packMemes);
-                for (let i = 0; i < packMemes.length; i++) {
+                console.log(memedisplay)
+
+               console.log(result)
+
+               
+                for (let i = 0; i < memedisplay.length; i++) {
                     try {
                         console.log(addOne);
 
                         const { data } = await addCollection({
                             variables: {
-                                memeId: packMemes[i],
+                                memeId: memedisplay[i],
                             },
                         });
                         console.log(data);
@@ -97,9 +115,9 @@ const Cardpack = () => {
                     } catch (e) {
                         console.error(e);
                     }
-                }
-
-
+                
+            }
+            
                 
                 // add collection to user
             }
