@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import { QUERY_USER } from "../utils/queries";
 import { Container, Row, Col, Jumbotron, Card } from "react-bootstrap";
 import { useQuery } from "@apollo/client";
-
+import Auth from "../utils/auth"
 function Profile() {
   const { data } = useQuery(QUERY_USER);
   let user;
 
   if (data) {
     user = data.users[0];
+    console.log(Auth.getProfile())
     console.log(user);
   }
 
