@@ -3,6 +3,7 @@ import { Form, Button, Container, Row, Jumbotron, Card } from "react-bootstrap";
 import { ADD_USER } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -12,7 +13,6 @@ const Signup = () => {
   });
   const [addUser, { error }] = useMutation(ADD_USER);
 
-  
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -47,7 +47,7 @@ const Signup = () => {
         <Row className="justify-content-center">
           <Card style={{ width: "35rem" }}>
             <Row className="justify-content-center">
-              <h3>SignUp.</h3>
+              <Link to="/signup">SignUp</Link>
             </Row>
             <Row className="justify-content-center">
               <Form onSubmit={handleFormSubmit}>

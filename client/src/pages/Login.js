@@ -3,6 +3,7 @@ import { Form, Button, Container, Row, Jumbotron, Card } from "react-bootstrap";
 import { LOGIN } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [formState, setFormState] = useState({ username: "", password: "" });
@@ -41,7 +42,7 @@ const Login = () => {
         <Row className="justify-content-center">
           <Card style={{ width: "35rem" }}>
             <Row className="justify-content-center">
-              <h3>Login.</h3>
+              <Link to="/login">Login</Link>
             </Row>
             <Row className="justify-content-center">
               <Form onSubmit={handleFormSubmit}>

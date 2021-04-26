@@ -19,11 +19,11 @@ function NavHeader() {
     } else {
       return (
         <>
-          <Nav.Link>
+          <Nav.Link href="/signup">
             Signup
             {/* <Link to="/Signup">SignUp</Link> */}
           </Nav.Link>
-          <Nav.Link>
+          <Nav.Link href="/login">
             Login
             {/* <Link to="/Login">Login</Link> */}
           </Nav.Link>
