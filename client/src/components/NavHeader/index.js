@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
 function NavHeader() {
-  const tabs = ["Home", "My Memes", "Community", "About Us"];
+  const tabs = ["Home", "Community", "About Us"];
 
   let Logged = () => {
     if (Auth.loggedIn()) {
