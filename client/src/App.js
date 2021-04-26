@@ -26,7 +26,7 @@ function App() {
     <ApolloProvider client={client}>
       <main>
         <NavHeader />
-        <Profile />
+        {/* <Profile /> */}
         <Home />
         <Aboutus />
         <Signup />
