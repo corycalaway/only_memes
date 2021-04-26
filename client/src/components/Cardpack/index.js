@@ -3,7 +3,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { Form, Button, Container, Row, Jumbotron, Card } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { ADD_COLLECTION } from "../../utils/mutations";
-import { QUERY_MEMES, QUERY_USER } from "../../utils/queries";
+import { QUERY_MEMES, QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
 import cardpackImage from "../../assets/img/memepack.png";
 
@@ -15,7 +15,11 @@ const Cardpack = () => {
     const [addCollection, { error }] = useMutation(ADD_COLLECTION);
     // const user = userData?.me || userData?.user || {};
 
+    const { loading, data: userData } = useQuery(QUERY_ME)
+ 
+
     const handleFormSubmit = async () => {
+        console.log(userData)
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
