@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
 function NavHeader() {
-  const tabs = ["Home", "Community", "About Us"];
+  const tabs = [];
 
   let Logged = () => {
     if (Auth.loggedIn()) {
@@ -19,14 +19,11 @@ function NavHeader() {
     } else {
       return (
         <>
-          <Nav.Link href="/signup">
-            Signup
-            {/* <Link to="/Signup">SignUp</Link> */}
-          </Nav.Link>
-          <Nav.Link href="/login">
-            Login
-            {/* <Link to="/Login">Login</Link> */}
-          </Nav.Link>
+          <Nav.Link href="/home">Home</Nav.Link>
+          <Nav.Link href="/community">Community</Nav.Link>
+          <Nav.Link href="/aboutus">About Us</Nav.Link>
+          <Nav.Link href="/signup">Signup</Nav.Link>
+          <Nav.Link href="/login">Login</Nav.Link>
         </>
       );
     }
