@@ -3,23 +3,41 @@ import { Link } from "react-router-dom";
 import { QUERY_USER } from "../utils/queries";
 import { Container, Row, Col, Jumbotron, Card } from "react-bootstrap";
 import { useQuery } from "@apollo/client";
-import Auth from "../utils/auth"
+import Auth from "../utils/auth";
+
 function Profile() {
   const { data } = useQuery(QUERY_USER);
-  let user;
+
+  let users;
+  let loggedIn;
+  let usersId;
+  let currentlyLoggedIn;
 
   if (data) {
-    user = data.users[0];
-    console.log(Auth.getProfile())
-    console.log(user);
+    users = data.users;
+    loggedIn = Auth.getProfile().data._id;
+    usersId = users.map((user) => {
+      return user._id;
+    });
+
+    currentlyLoggedIn = usersId.indexOf(loggedIn);
+
+    currentlyLoggedIn = users[currentlyLoggedIn];
+    console.log(currentlyLoggedIn);
+  } else {
+    return (
+      <>
+        <Jumbotron>did it work?</Jumbotron>
+      </>
+    );
   }
 
   return (
     <>
-      {user ? (
+      {Auth.loggedIn() ? (
         <>
-          {user.memes.map((meme) => (
-            <Card>
+          {currentlyLoggedIn.memes.map((meme) => (
+            <Card style={{ width: "20rem" }}>
               <Card.Img variant="top" src={meme.image} />
               <Card.Body>
                 <Card.Title>{meme.title}</Card.Title>
