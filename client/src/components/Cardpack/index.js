@@ -6,9 +6,15 @@ import { ADD_COLLECTION } from "../../utils/mutations";
 import { QUERY_MEMES, QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
 import cardpackImage from "../../assets/img/memepack.png";
+import {useSelector, useDispatch} from 'react-redux';
+import {addNewMemes} from '../../utils/actions/'
+
 
 const Cardpack = () => {
     const { data } = useQuery(QUERY_MEMES);
+    const dispatch = useDispatch();
+
+    
     // const { userData } = useQuery(QUERY_USER)
     // const { username: userParam } = useParams();
 
@@ -21,7 +27,7 @@ const Cardpack = () => {
 
     const handleFormSubmit = async () => {
         let tempCredit;
-
+        console.log(dispatch(addNewMemes("test")))
         const token = Auth.loggedIn() ? Auth.getToken() : null;
         if (Auth.loggedIn()) {
             tempCredit = userData.me.credit
@@ -92,6 +98,9 @@ const Cardpack = () => {
                         console.error(e);
                     }
                 }
+
+
+                
                 // add collection to user
             }
         }
@@ -126,7 +135,7 @@ const Cardpack = () => {
                             {" "}
 
                             <div>
-                                <Button variant="dark" type="submit" onClick={handleFormSubmit}>
+                                <Button style={buttonStyle} variant="dark" type="submit" onClick={handleFormSubmit}>
                                     Get Memes!
                                     </Button>
                             </div>
@@ -160,4 +169,7 @@ const Cardpack = () => {
     );
 };
 
+const buttonStyle = {
+    background: 'red'
+}
 export default Cardpack;
