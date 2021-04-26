@@ -40,48 +40,29 @@ const resolvers = {
 
       const meme = await Meme.create(args);
 
-      // const token = signToken(user);
-
-      // return { token, user };
       return meme;
     },
     addCollection: async (parent, { memeId }, context) => {
-      console.log("here")
-      console.log(context.user.credit);
-      console.log(context.user)
+
       if (context.user) {
-        //  const newCollection = new Meme(_id);
-        //     {_id: context.user._id },
-        //   {$push: { memes: _id }},
-        //   { new: true }
-        // );
-       
-   
+
         let updateCredit = await User.findByIdAndUpdate(
 
           { _id: context.user._id },
-          { $inc: {credit: - 1}},
-          // { $subtract:  {credit: -1}},
-          // { $addToSet: { memes: memeId } },
+          { $inc: { credit: - 1 } },
           { new: true }
         ).populate("memes");
-          
-        
 
 
         let newCollection = await User.findByIdAndUpdate(
-         
+
           { _id: context.user._id },
-          // { $inc: {credit: - 1}},
-          // { $subtract:  {credit: -1}},
           { $addToSet: { memes: memeId } },
           { new: true }
         ).populate("memes");
 
-    
         return updateCredit
       }
-
       throw new AuthenticationError("Not logged in");
     },
   },
