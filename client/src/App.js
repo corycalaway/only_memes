@@ -4,6 +4,7 @@ import Aboutus from "./pages/Aboutus";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
@@ -25,6 +26,7 @@ function App() {
     <ApolloProvider client={client}>
       <main>
         <NavHeader />
+        {/* <Profile /> */}
         <Home />
         <Aboutus />
         <Signup />
