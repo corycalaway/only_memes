@@ -8,6 +8,7 @@ import Auth from "../../utils/auth";
 
 const Cardpack = () => {
     const { data } = useQuery(QUERY_MEMES);
+    // const { data: userData } = useQuery(QUERY_USER);
     // const { userData } = useQuery(QUERY_USER)
     // const { username: userParam } = useParams();
 
@@ -16,7 +17,7 @@ const Cardpack = () => {
 
     const handleFormSubmit = async () => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
-
+        // console.log(userData)
         if (!token) {
             console.log("no token")
         } else {
