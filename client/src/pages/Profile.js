@@ -6,15 +6,16 @@ import { useQuery } from "@apollo/client";
 import Auth from "../utils/auth";
 
 function Profile() {
-  const { data } = useQuery(QUERY_USER);
+  const { data: userData } = useQuery(QUERY_USER);
 
   let users;
   let loggedIn;
   let usersId;
   let currentlyLoggedIn;
 
-  if (data) {
-    users = data.users;
+  if (!Auth.loggedIn()) {
+    console.log(userData)
+    users = userData.users;
     loggedIn = Auth.getProfile().data._id;
     usersId = users.map((user) => {
       return user._id;
@@ -34,7 +35,7 @@ function Profile() {
 
   return (
     <>
-      {Auth.loggedIn() ? (
+      {userData ? (
         <>
           {currentlyLoggedIn.memes.map((meme) => (
             <Card style={{ width: "20rem" }}>

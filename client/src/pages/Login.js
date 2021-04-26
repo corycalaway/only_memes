@@ -10,6 +10,8 @@ const Login = () => {
   const [login, { error }] = useMutation(LOGIN);
 
   const handleFormSubmit = async (event) => {
+    console.log(Auth.loggedIn())
+    event.preventDefault();
     try {
       console.log("hi");
       console.log(formState.username, formState.password);
