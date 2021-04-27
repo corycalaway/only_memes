@@ -5,12 +5,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
 function NavHeader() {
-  const tabs = ["Home", "Community", "About Us"];
+  const tabs = [];
 
   let Logged = () => {
     if (Auth.loggedIn()) {
       return (
         <>
+          <Nav.Link href="/community">Community</Nav.Link>
+          <Nav.Link href="/aboutus">About Us</Nav.Link>
           <Nav.Link href="/" onClick={() => Auth.logout()}>
             Logout
           </Nav.Link>
@@ -19,14 +21,10 @@ function NavHeader() {
     } else {
       return (
         <>
-          <Nav.Link href="/signup">
-            Signup
-            {/* <Link to="/Signup">SignUp</Link> */}
-          </Nav.Link>
-          <Nav.Link href="/login">
-            Login
-            {/* <Link to="/Login">Login</Link> */}
-          </Nav.Link>
+          <Nav.Link href="/home">Home</Nav.Link>
+          <Nav.Link href="/aboutus">About Us</Nav.Link>
+          <Nav.Link href="/signup">Signup</Nav.Link>
+          <Nav.Link href="/login">Login</Nav.Link>
         </>
       );
     }
@@ -36,7 +34,7 @@ function NavHeader() {
     if (Auth.loggedIn()) {
       return (
         <>
-          <Nav.Link>My Memes</Nav.Link>
+          <Nav.Link href="/mymemes">My Memes</Nav.Link>
         </>
       );
     } else {
@@ -46,21 +44,10 @@ function NavHeader() {
 
   return (
     <Navbar sticky="top" bg="dark" variant="dark" expand="lg">
-      <Navbar.Brand href="#Home">OnlyMemes!</Navbar.Brand>
+      <Navbar.Brand href="/">OnlyMemes!</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          {tabs.map((tab) => (
-            <Nav.Link
-              key={tab}
-              href={"#" + tab.toLowerCase()}
-              //onClick={() => props.handlePageChange(tab)}
-            >
-              {tab}
-            </Nav.Link>
-          ))}
-          {Profile()}
-        </Nav>
+        <Nav className="mr-auto"></Nav>
         <NavDropdown.Divider />
         <Nav>{Logged()}</Nav>
       </Navbar.Collapse>

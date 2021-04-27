@@ -10,7 +10,7 @@ const Login = () => {
   const [login, { error }] = useMutation(LOGIN);
 
   const handleFormSubmit = async (event) => {
-    console.log(Auth.loggedIn())
+    console.log(Auth.loggedIn());
     event.preventDefault();
     try {
       console.log("hi");
@@ -43,9 +43,6 @@ const Login = () => {
       <Jumbotron>
         <Row className="justify-content-center">
           <Card style={{ width: "35rem" }}>
-            <Row className="justify-content-center">
-              <Link to="/login">Login</Link>
-            </Row>
             <Row className="justify-content-center">
               <Form onSubmit={handleFormSubmit}>
                 <Form.Group controlId="formUsername">

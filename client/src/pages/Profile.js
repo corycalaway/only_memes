@@ -1,52 +1,43 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { QUERY_USER } from "../utils/queries";
-import { Container, Row, Col, Jumbotron, Card } from "react-bootstrap";
+import { QUERY_ME } from "../utils/queries";
+import { Container, Row, Jumbotron, Card } from "react-bootstrap";
 import { useQuery } from "@apollo/client";
-import Auth from "../utils/auth";
 
 function Profile() {
-  const { data: userData } = useQuery(QUERY_USER);
+  const { data } = useQuery(QUERY_ME);
+  let user;
+  let memes;
 
-  let users;
-  let loggedIn;
-  let usersId;
-  let currentlyLoggedIn;
-
-  if (!Auth.loggedIn()) {
-    console.log(userData)
-    users = userData.users;
-    loggedIn = Auth.getProfile().data._id;
-    usersId = users.map((user) => {
-      return user._id;
-    });
-
-    currentlyLoggedIn = usersId.indexOf(loggedIn);
-
-    currentlyLoggedIn = users[currentlyLoggedIn];
-    console.log(currentlyLoggedIn);
-  } else {
-    return (
-      <>
-        <Jumbotron>did it work?</Jumbotron>
-      </>
-    );
+  if (data) {
+    user = data.me;
+    memes = user.memes;
+    console.log(user);
   }
 
   return (
     <>
-      {userData ? (
+      {user ? (
         <>
-          {currentlyLoggedIn.memes.map((meme) => (
-            <Card style={{ width: "20rem" }}>
-              <Card.Img variant="top" src={meme.image} />
-              <Card.Body>
-                <Card.Title>{meme.title}</Card.Title>
-                <Card.Text>Rarity: {meme.rarity}</Card.Text>
-                <Card.Text>Category: {meme.category}</Card.Text>
-              </Card.Body>
-            </Card>
-          ))}
+          <Jumbotron>
+            <h3>
+              Hey, {user.username}! You've currently got {user.credit} credits
+              left.
+            </h3>
+          </Jumbotron>
+          <Container fluid>
+            <Row className="justify-content-center">
+              {memes.map((meme) => (
+                <Card key={meme._id} style={{ width: "20rem", margin: "1rem" }}>
+                  <Card.Img variant="top" src={meme.image} />
+                  <Card.Body>
+                    <Card.Title>{meme.title}</Card.Title>
+                    <Card.Text>Rarity: {meme.rarity}</Card.Text>
+                    <Card.Text>Category: {meme.category}</Card.Text>
+                  </Card.Body>
+                </Card>
+              ))}
+            </Row>
+          </Container>
         </>
       ) : null}
     </>

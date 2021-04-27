@@ -47,15 +47,12 @@ const Signup = () => {
         <Row className="justify-content-center">
           <Card style={{ width: "35rem" }}>
             <Row className="justify-content-center">
-              <Link to="/signup">SignUp</Link>
-            </Row>
-            <Row className="justify-content-center">
               <Form onSubmit={handleFormSubmit}>
                 <Form.Group controlId="formUsername">
                   <Form.Label>Username</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter your preferred username."
+                    placeholder="Enter a username."
                     required
                     name="username"
                     onChange={handleChange}

@@ -28,3 +28,22 @@ export const QUERY_MEMES = gql`
     }
   }
 `;
+
+
+export const QUERY_ME = gql`
+
+{
+  me {
+    _id
+    username
+    credit
+    memes {
+      _id
+        image
+        title
+        rarity
+        category
+    }
+  }
+}
+`
