@@ -11,8 +11,11 @@ function NavHeader() {
     if (Auth.loggedIn()) {
       return (
         <>
+<<<<<<< HEAD
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/profile">My Memes</Nav.Link>
+=======
+>>>>>>> feature/bret
           <Nav.Link href="/community">Community</Nav.Link>
           <Nav.Link href="/aboutus">About Us</Nav.Link>
           <Nav.Link href="/" onClick={() => Auth.logout()}>
@@ -24,7 +27,6 @@ function NavHeader() {
       return (
         <>
           <Nav.Link href="/home">Home</Nav.Link>
-          <Nav.Link href="/community">Community</Nav.Link>
           <Nav.Link href="/aboutus">About Us</Nav.Link>
           <Nav.Link href="/signup">Signup</Nav.Link>
           <Nav.Link href="/login">Login</Nav.Link>
@@ -33,6 +35,21 @@ function NavHeader() {
     }
   };
 
+<<<<<<< HEAD
+=======
+  let Profile = () => {
+    if (Auth.loggedIn()) {
+      return (
+        <>
+          <Nav.Link href="/mymemes">My Memes</Nav.Link>
+        </>
+      );
+    } else {
+      return;
+    }
+  };
+
+>>>>>>> feature/bret
   return (
     <Navbar sticky="top" bg="dark" variant="dark" expand="lg">
       <Navbar.Brand href="/">OnlyMemes!</Navbar.Brand>
