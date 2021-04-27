@@ -3,9 +3,9 @@
 const memeDisplayReducer = (state = [], action) => {
     switch (action.type) {
         case "NEWMEMES":
-            return state.push(action.value)
+            return state = action.value
         case "SALEPACK":
-            return state
+            return state = [action.value]
         default: 
         return state
     }

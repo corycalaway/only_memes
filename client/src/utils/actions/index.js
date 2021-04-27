@@ -5,3 +5,11 @@ export const addNewMemes = (array) => {
     }
 
 }
+
+export const cardReset = (array) => {
+    return {
+        type: 'SALEPACK',
+        value: array
+    }
+
+}
