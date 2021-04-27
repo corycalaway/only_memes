@@ -9,6 +9,7 @@ import cardpackImage from "../../assets/img/memepack.png";
 import { useSelector, useDispatch } from 'react-redux';
 import { addNewMemes, cardReset } from '../../utils/actions/'
 import OpenPack from './OpenPack';
+import './style.css';
 
 const Cardpack = () => {
     const { data } = useQuery(QUERY_MEMES);
@@ -114,13 +115,16 @@ const Cardpack = () => {
 
         return (
             <Container fluid>
+                
                 <Row className="justify-content-center">
+                    
                     <Card style={{ width: "30rem" }}>
                         <Row className="justify-content-center">
                             <h3>Purchase a Pack!</h3>
                         </Row>
                         <Row className="justify-content-center">
                             <Card style={{ width: "20rem" }}>
+                                {/* <div className="monster"> </div> */}
                                 <img
                                     src={cardpackImage}
                                     alt=""
@@ -128,7 +132,7 @@ const Cardpack = () => {
                             </Card>
                       
                        
-                                <OpenPack />
+                               
                            
 
                         </Row>
@@ -144,6 +148,7 @@ const Cardpack = () => {
                                 </div>
                             </Row>
                         </Row>
+
 
                         {enoughCredits <= 0 &&
                             <Row className="justify-content-center">
@@ -165,6 +170,7 @@ const Cardpack = () => {
 
                         <Row className="justify-content-center"></Row>
                     </Card>
+                    <OpenPack />
                 </Row>
 
 
