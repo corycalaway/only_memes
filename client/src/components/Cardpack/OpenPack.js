@@ -2,9 +2,27 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { QUERY_MEMES, QUERY_ME } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-
+import { useSpring, animated } from 'react-spring'
+import { Form, Button, Container, Row, Jumbotron, Card } from "react-bootstrap";
 
 const Opened = () => {
+
+
+
+    const props = useSpring({
+        to: { opacity: 1 },
+        from: { opacity: 0 },
+        delay: 200,
+
+
+    })
+
+    const styles = useSpring({
+        loop: true,
+        from: { rotateZ: 180 },
+        to: { rotateZ: 0 },
+        delay: 10000
+    })
 
     const { data: memeData } = useQuery(QUERY_MEMES);
     // var { memes } = memeData;
@@ -25,20 +43,28 @@ const Opened = () => {
     // })
     if (memedisplay.length > 0) {
         return (
-           <> 
-           <div>
-            <img src={memedisplay[0].image} alt="" />
-            </div>
-            <div>
-            <img src={memedisplay[1].image} alt="" />
-            </div>
-            <img src={memedisplay[2].image} alt="" />
+            <>      
+                <Row className="justify-content-center">
+                <Card style={{ width: "20rem" }}>
+             
+                        <animated.img src={memedisplay[0].image} style={props, styles} alt="" />
+               
+                </Card>
+                <Card style={{ width: "20rem" }}>
+                    <animated.img src={memedisplay[1].image} style={props, styles} alt="" />
+
+                </Card>
+                <Card style={{ width: "20rem" }}>
+                        <animated.img src={memedisplay[2].image} style={props, styles} alt="" />
+                </Card>
+            </Row>
+                {/* <animated.div style={props}>I will fade in</animated.div> */}
             </>
         )
     } else {
-    return (
-        <div></div>
-    )
+        return (
+            <div></div>
+        )
     }
 }
 
