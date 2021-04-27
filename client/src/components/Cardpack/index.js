@@ -65,7 +65,7 @@ const Cardpack = () => {
                 let lowSelect2 = Math.floor(Math.random() * lowPrize.length + 1) - 1;
 
                 while (lowSelect === lowSelect2) {
-                    lowSelect2 = Math.floor(Math.random() * highPrize.length + 1) - 1;
+                    lowSelect2 = Math.floor(Math.random() * lowPrize.length + 1) - 1;
                 }
 
                 let addOne = highPrize[highSelect]._id;
