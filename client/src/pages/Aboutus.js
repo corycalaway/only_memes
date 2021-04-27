@@ -4,6 +4,9 @@ import { Jumbotron, Button, Container, Row } from "react-bootstrap";
 const Aboutus = () => {
   return (
     <Container fluid>
+      <div>
+        <p></p>
+      </div>
       <Jumbotron>
         <Row className="justify-content-center">
           <h3>Kyle</h3>
@@ -28,6 +31,11 @@ const Aboutus = () => {
             Check me out on GitHub! <i className="fab fa-github"></i>
           </Button>
         </Row>
+      </Jumbotron>
+      <div>
+        <p></p>
+      </div>
+      <Jumbotron>
         <Row className="justify-content-center">
           <h3>Paul</h3>
           <p>
@@ -48,6 +56,11 @@ const Aboutus = () => {
             Check me out on GitHub! <i className="fab fa-github"></i>
           </Button>
         </Row>
+      </Jumbotron>
+      <div>
+        <p></p>
+      </div>
+      <Jumbotron>
         <Row className="justify-content-center">
           <h3>Cory</h3>
           <p>
@@ -68,6 +81,11 @@ const Aboutus = () => {
             Check me out on GitHub! <i className="fab fa-github"></i>
           </Button>
         </Row>
+      </Jumbotron>
+      <div>
+        <p></p>
+      </div>
+      <Jumbotron>
         <Row className="justify-content-center">
           <h3>Bret</h3>
           <p>

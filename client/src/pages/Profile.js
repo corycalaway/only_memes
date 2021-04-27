@@ -35,11 +35,13 @@ function Profile() {
             <Row className="justify-content-center">
               {memes.map((meme) => (
                 <Card key={meme._id} style={{ width: "20rem", margin: "1rem" }}>
-                  <Card.Img variant="top" src={meme.image} />
                   <Card.Body>
-                    <Card.Title>{meme.title}</Card.Title>
-                    <Card.Text>Rarity: {meme.rarity}</Card.Text>
-                    <Card.Text>Category: {meme.category}</Card.Text>
+                    <Card.Img variant="top" src={meme.image} />
+                    <Card.Body>
+                      <Card.Title>{meme.title}</Card.Title>
+                      <Card.Text>Rarity: {meme.rarity}</Card.Text>
+                      <Card.Text>Category: {meme.category}</Card.Text>
+                    </Card.Body>
                   </Card.Body>
                 </Card>
               ))}

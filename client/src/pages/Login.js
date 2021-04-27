@@ -3,7 +3,6 @@ import { Form, Button, Container, Row, Jumbotron, Card } from "react-bootstrap";
 import { LOGIN } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
-import { Link } from "react-router-dom";
 
 const Login = () => {
   const [formState, setFormState] = useState({ username: "", password: "" });
@@ -43,43 +42,45 @@ const Login = () => {
       <Jumbotron>
         <Row className="justify-content-center">
           <Card style={{ width: "35rem" }}>
-            <Row className="justify-content-center">
-              <Form onSubmit={handleFormSubmit}>
-                <Form.Group controlId="formUsername">
-                  <Form.Label>Username</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="username"
-                    placeholder="Enter your username."
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
+            <Card.Body>
+              <Row className="justify-content-center">
+                <Form onSubmit={handleFormSubmit}>
+                  <Form.Group controlId="formUsername">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="username"
+                      placeholder="Enter your username."
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
 
-                <Form.Group controlId="formPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="password"
-                    placeholder="Enter your password."
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
+                  <Form.Group controlId="formPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      name="password"
+                      placeholder="Enter your password."
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
 
-                {error ? (
-                  <div>
-                    <p>The provided credentials are incorrect!</p>
-                  </div>
-                ) : null}
+                  {error ? (
+                    <div>
+                      <p>The provided credentials are incorrect!</p>
+                    </div>
+                  ) : null}
 
-                <Row className="justify-content-center">
-                  <Button variant="dark" type="submit">
-                    Submit
-                  </Button>
-                </Row>
-              </Form>
-            </Row>
+                  <Row className="justify-content-center">
+                    <Button variant="dark" type="submit">
+                      Submit
+                    </Button>
+                  </Row>
+                </Form>
+              </Row>
+            </Card.Body>
           </Card>
         </Row>
       </Jumbotron>
