@@ -5,6 +5,20 @@ db.once('open', async () => {
   await Meme.deleteMany();
 
   const memes = await Meme.insertMany([
+
+    {
+      title: 'Cricket: Its alaway sunnny',
+      image: "https://res.cloudinary.com/accordingtocloud/image/upload/v1619493361/Cricket_Its_always_sunny_psfn8e.gif",
+      rarity: "Trash",
+      category: "Pathetic"
+    },
+
+    {
+      title: 'Venture Bros: Feeling Deadly',
+      image: "https://res.cloudinary.com/accordingtocloud/image/upload/v1619494178/Venture-bros-monarch_bech6j.jpg",
+      rarity: "Worthless",
+      category: "Powerful"
+    },
     { 
       title: 'Its Always Sunny: Poor Meme',
       image: "https://res.cloudinary.com/accordingtocloud/image/upload/v1619142065/it_s-always-sunny-poor_eh1nwo.jpg",
@@ -63,6 +77,24 @@ db.once('open', async () => {
       title: 'Stick Figure: Coding work doesnt work',
       image: "https://res.cloudinary.com/accordingtocloud/image/upload/v1619147673/coding_meme_aedqur.jpg",
       rarity: "Epic",
+      category: "Dank"
+    },
+    {
+      title: 'Demon Slayer: Mom not home',
+      image: "https://res.cloudinary.com/accordingtocloud/image/upload/v1619495477/Demon-Slayer-Mom_snvhme.jpg",
+      rarity: "Worthless",
+      category: "Dank"
+    },
+    {
+      title: 'Demon Slayer: People Talk',
+      image: "https://res.cloudinary.com/accordingtocloud/image/upload/v1619495483/Demon-Slyer-People-Talking_ln2rlx.jpg",
+      rarity: "Epic",
+      category: "Dank"
+    },
+    {
+      title: 'Stress: Not Stressful',
+      image: "https://res.cloudinary.com/accordingtocloud/image/upload/v1615155246/ltgfuxrct7ezwi4ac0u8.jpg",
+      rarity: "Worthless",
       category: "Dank"
     },
     

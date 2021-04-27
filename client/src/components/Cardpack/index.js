@@ -51,6 +51,7 @@ const Cardpack = () => {
                 let lowPrize = [];
                 let packMemes = [];
                 let fullPack = [];
+                console.log(memes.length)
                 for (let i = 0; i < memes.length; i++) {
                     if (memes[i].rarity === "Legendary" || memes[i].rarity === "Epic") {
                         highPrize.push(memes[i]);
@@ -60,8 +61,8 @@ const Cardpack = () => {
                 }
 
                 let highSelect = Math.floor(Math.random() * highPrize.length + 1) - 1;
-                let lowSelect = Math.floor(Math.random() * highPrize.length + 1) - 1;
-                let lowSelect2 = Math.floor(Math.random() * highPrize.length + 1) - 1;
+                let lowSelect = Math.floor(Math.random() * lowPrize.length + 1) - 1;
+                let lowSelect2 = Math.floor(Math.random() * lowPrize.length + 1) - 1;
 
                 while (lowSelect === lowSelect2) {
                     lowSelect2 = Math.floor(Math.random() * highPrize.length + 1) - 1;
