@@ -11,8 +11,8 @@ function NavHeader() {
     if (Auth.loggedIn()) {
       return (
         <>
-          <Nav.Link href="/home">Home</Nav.Link>
-          <Nav.Link>My Memes</Nav.Link>
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/profile">My Memes</Nav.Link>
           <Nav.Link href="/community">Community</Nav.Link>
           <Nav.Link href="/aboutus">About Us</Nav.Link>
           <Nav.Link href="/" onClick={() => Auth.logout()}>
@@ -35,7 +35,7 @@ function NavHeader() {
 
   return (
     <Navbar sticky="top" bg="dark" variant="dark" expand="lg">
-      <Navbar.Brand href="#Home">OnlyMemes!</Navbar.Brand>
+      <Navbar.Brand href="/">OnlyMemes!</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto"></Nav>

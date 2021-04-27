@@ -38,6 +38,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/aboutus" component={Aboutus} />
+            <Route exact path="/profile" component={Profile} />
             {/* <Route exact path="/products/:id" component={Detail} />
             <Route exact path="/success" component={Success} /> */}
             {/* <Route component={NoMatch} /> */}
