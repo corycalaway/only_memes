@@ -1,6 +1,6 @@
 import React from "react";
 import { QUERY_ME } from "../utils/queries";
-import { Container, Row, Jumbotron, Card } from "react-bootstrap";
+import { Container, Row, Col, Jumbotron, Card, Button } from "react-bootstrap";
 import { useQuery } from "@apollo/client";
 
 function Profile() {
@@ -19,10 +19,17 @@ function Profile() {
       {user ? (
         <>
           <Jumbotron>
-            <h3>
-              Hey, {user.username}! You've currently got {user.credit} credits
-              left.
-            </h3>
+            <Container fluid>
+              <Row noGutters className="justify-content-center">
+                <h3>
+                  Hey, {user.username}! You've currently got {user.credit}{" "}
+                  credits left. Need some more?{" "}
+                </h3>
+              </Row>
+              <Row className="justify-content-center">
+                <Button variant="danger">Get Credits!</Button>
+              </Row>
+            </Container>
           </Jumbotron>
           <Container fluid>
             <Row className="justify-content-center">
