@@ -21,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/corycalaway/only_memes/issues"
   },
-  "homepage": "https://github.com/corycalaway/only_memes#readme"
+  "homepage": "https://github.com/corycalaway/only_memes#readme",
+  "dependencies": {
+    "if-env": "^1.0.4"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.2"
+  }
 }

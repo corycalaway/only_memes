@@ -19,8 +19,8 @@ const resolvers = {
 
       return { token, user };
     },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+    login: async (parent, { username, password }) => {
+      const user = await User.findOne({ username });
 
       if (!user) {
         throw new AuthenticationError("Incorrect credentials");
@@ -37,35 +37,32 @@ const resolvers = {
       return { token, user };
     },
     databaseMeme: async (parent, args) => {
-      console.log(args);
-      console.log(Meme);
+
       const meme = await Meme.create(args);
-      console.log(meme);
-      // const token = signToken(user);
 
-      // return { token, user };
-      return  meme ;
+      return meme;
     },
-    addCollection: async (parent, {memeId}, context) => {
+    addCollection: async (parent, { memeId }, context) => {
 
-      console.log(context.user)
       if (context.user) {
 
-        //  const newCollection = new Meme(_id);
-        //     {_id: context.user._id },
-        //   {$push: { memes: _id }},
-        //   { new: true }
-        // );
-      
+        let updateCredit = await User.findByIdAndUpdate(
+
+          { _id: context.user._id },
+          { $inc: { credit: - 1 } },
+          { new: true }
+        ).populate("memes");
+
 
         let newCollection = await User.findByIdAndUpdate(
-            {_id: context.user._id}, { $addToSet: { memes: memeId }},{ new: true}
-            ).populate('memes');
 
-            console.log(newCollection)
-        return newCollection;
+          { _id: context.user._id },
+          { $addToSet: { memes: memeId } },
+          { new: true }
+        ).populate("memes");
+
+        return updateCredit
       }
-
       throw new AuthenticationError("Not logged in");
     },
   },
