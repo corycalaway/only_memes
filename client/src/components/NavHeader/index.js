@@ -11,11 +11,6 @@ function NavHeader() {
     if (Auth.loggedIn()) {
       return (
         <>
-<<<<<<< HEAD
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/profile">My Memes</Nav.Link>
-=======
->>>>>>> feature/bret
           <Nav.Link href="/community">Community</Nav.Link>
           <Nav.Link href="/aboutus">About Us</Nav.Link>
           <Nav.Link href="/" onClick={() => Auth.logout()}>
@@ -35,8 +30,6 @@ function NavHeader() {
     }
   };
 
-<<<<<<< HEAD
-=======
   let Profile = () => {
     if (Auth.loggedIn()) {
       return (
@@ -49,7 +42,6 @@ function NavHeader() {
     }
   };
 
->>>>>>> feature/bret
   return (
     <Navbar sticky="top" bg="dark" variant="dark" expand="lg">
       <Navbar.Brand href="/">OnlyMemes!</Navbar.Brand>
