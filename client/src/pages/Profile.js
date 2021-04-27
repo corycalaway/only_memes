@@ -1,9 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { QUERY_USER, QUERY_ME } from "../utils/queries";
-import { Container, Row, Col, Jumbotron, Card } from "react-bootstrap";
+import { QUERY_ME } from "../utils/queries";
+import { Container, Row, Jumbotron, Card } from "react-bootstrap";
 import { useQuery } from "@apollo/client";
-import Auth from "../utils/auth";
 
 function Profile() {
   const { data } = useQuery(QUERY_ME);
