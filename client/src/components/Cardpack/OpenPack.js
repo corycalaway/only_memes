@@ -21,12 +21,14 @@ const Opened = () => {
         loop: true,
         from: { rotateZ: 180 },
         to: { rotateZ: 0 },
-        delay: 10000
+        delay: 1000
     })
 
     const { data: memeData } = useQuery(QUERY_MEMES);
     // var { memes } = memeData;
     console.log(memeData)
+
+    
     const memedisplay = useSelector(state => state.memeDisplayReducer)
     console.log(memedisplay)
 
