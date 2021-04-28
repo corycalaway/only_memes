@@ -82,8 +82,14 @@ const Cardpack = () => {
                 variables: {
                   memeId: packMemes[i],
                 },
+                  refetchQueries: [
+                      { query: QUERY_ME }
+                  ]
               });
               Auth.loggedIn(token);
+               
+                  
+              
             } catch (e) {
               console.error(e);
             }
