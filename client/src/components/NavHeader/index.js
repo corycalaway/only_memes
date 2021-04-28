@@ -1,13 +1,32 @@
 import React from "react";
 import Auth from "../../utils/auth";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useQuery } from "@apollo/react-hooks";
+import { QUERY_ME } from "../../utils/queries";
 
 function NavHeader() {
+  let Credit = () => {
+    let { data } = useQuery(QUERY_ME);
+    let credit;
+
+    if (data) {
+      credit = data.me.credit;
+      return (
+        <>
+          <Button variant="outline-light">
+            {credit} credits <i class="fas fa-money-bill"></i>
+          </Button>
+        </>
+      );
+    }
+  };
+
   let Logged = () => {
     if (Auth.loggedIn()) {
       return (
         <>
+          {Credit()}
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/profile">My Memes</Nav.Link>
           <Nav.Link href="/community">Community</Nav.Link>
@@ -32,7 +51,7 @@ function NavHeader() {
 
   return (
     <Navbar sticky="top" bg="dark" variant="dark" expand="lg">
-      <Navbar.Brand href="/">OnlyMemes!</Navbar.Brand>
+      <Navbar.Brand href="/">🦾 OnlyMemes!</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto"></Nav>
