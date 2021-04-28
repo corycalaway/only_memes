@@ -56,6 +56,7 @@ const resolvers = {
     },
     addCollection: async (parent, { memeId }, context) => {
 
+      
       if (context.user) {
 
         let updateCredit = await User.findByIdAndUpdate(
