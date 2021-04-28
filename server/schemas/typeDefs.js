@@ -19,13 +19,12 @@ const typeDefs = gql`
     memes: [Meme]
   }
 
-   
-
   type Query {
     me: User
     user: User
     users: [User]
     memes: [Meme]
+    getStripeSess: StripeSess
   }
 
   type Mutation {
@@ -43,6 +42,7 @@ const typeDefs = gql`
       category: String
     ): Meme
     addCollection(memeId: ID!): User
+    addUserCredits: User
   }
 
   type Auth {
@@ -50,7 +50,9 @@ const typeDefs = gql`
     user: User
   }
 
- 
+  type StripeSess {
+    session: ID
+  }
 `;
 
 module.exports = typeDefs;
