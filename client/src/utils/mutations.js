@@ -15,11 +15,11 @@ export const LOGIN = gql`
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {
-       token
+      token
       user {
         _id
       }
-   }
+    }
   }
 `;
 
@@ -52,6 +52,14 @@ export const DATABASE_MEME = gql`
       _id
       title
       rarity
+    }
+  }
+`;
+
+export const ADD_CREDITS = gql`
+  mutation addUserCredits {
+    addUserCredits {
+      credit
     }
   }
 `;

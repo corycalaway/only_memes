@@ -1,19 +1,21 @@
 const { User, Meme, Category } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
+// require("dotenv").config();
+const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v -password')
-          .populate('memes')
+          .select("-__v -password")
+          .populate("memes");
 
         return userData;
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
 
     users: async () => {
@@ -21,6 +23,39 @@ const resolvers = {
     },
     memes: async () => {
       return Meme.find().select("-__v -password");
+    },
+    getStripeSess: async (parent, args, context) => {
+      const url = new URL(context.headers.referer).origin;
+      const line_items = [];
+
+      const product = await stripe.products.create({
+        name: "Credits",
+        description: "Meme credits - store currency",
+        // add a pikachu meme coin img here
+        // images: [`${url}/images/${products[i].image}`],
+      });
+
+      // generate price id using the product id
+      const price = await stripe.prices.create({
+        product: product.id,
+        unit_amount: 100,
+        currency: "usd",
+      });
+
+      // add price id to the line items array
+      line_items.push({
+        price: price.id,
+        quantity: 10,
+      });
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items,
+        mode: "payment",
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`,
+      });
+
+      return { session: session.id };
     },
   },
   Mutation: {
@@ -49,33 +84,37 @@ const resolvers = {
       return { token, user };
     },
     databaseMeme: async (parent, args) => {
-
       const meme = await Meme.create(args);
 
       return meme;
     },
     addCollection: async (parent, { memeId }, context) => {
-
       if (context.user) {
-
         let updateCredit = await User.findByIdAndUpdate(
-
-          { _id: context.user._id },
-          { $inc: { credit: - 1 } },
+          { $inc: { credit: -1 } },
           { new: true }
         ).populate("memes");
 
-
         let newCollection = await User.findByIdAndUpdate(
-
           { _id: context.user._id },
           { $addToSet: { memes: memeId } },
           { new: true }
         ).populate("memes");
 
-        return updateCredit
+        return updateCredit;
       }
       throw new AuthenticationError("Not logged in");
+    },
+    addUserCredits: async (parent, args, context) => {
+      console.log(context.user);
+      if (context.user) {
+        console.log("the args is", args);
+        return await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $inc: { credit: 10 } },
+          { new: true }
+        );
+      }
     },
   },
 };

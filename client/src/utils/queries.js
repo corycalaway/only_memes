@@ -29,21 +29,27 @@ export const QUERY_MEMES = gql`
   }
 `;
 
-
 export const QUERY_ME = gql`
-
-{
-  me {
-    _id
-    username
-    credit
-    memes {
+  {
+    me {
       _id
+      username
+      credit
+      memes {
+        _id
         image
         title
         rarity
         category
+      }
     }
   }
-}
-`
+`;
+
+export const QUERY_STRIPE_SESS = gql`
+  query getStripeSess {
+    getStripeSess {
+      session
+    }
+  }
+`;
