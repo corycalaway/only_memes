@@ -27,7 +27,9 @@ function Profile() {
                 </h3>
               </Row>
               <Row className="justify-content-center">
-                <Button variant="danger">Get Credits!</Button>
+                <Button variant="danger">
+                  Get Credits! <i class="fas fa-money-bill"></i>
+                </Button>
               </Row>
             </Container>
           </Jumbotron>
