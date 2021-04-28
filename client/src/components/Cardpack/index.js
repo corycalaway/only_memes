@@ -8,7 +8,7 @@ import Auth from "../../utils/auth";
 import cardpackImage from "../../assets/img/memepack.png";
 import { useSelector, useDispatch } from "react-redux";
 import { addNewMemes, cardReset } from "../../utils/actions/";
-import OpenPack from "./OpenPack";
+import Opened from "./OpenPack";
 
 const Cardpack = () => {
     const { data } = useQuery(QUERY_MEMES);
@@ -150,7 +150,7 @@ const Cardpack = () => {
                     </Card.Body>
                 </Card>
             </Row>
-            <OpenPack />
+            <Opened />
         </Container>
     );
 };
