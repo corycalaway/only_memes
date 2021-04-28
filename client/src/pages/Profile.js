@@ -12,6 +12,7 @@ function Profile() {
     user = data.me;
     memes = user.memes;
     console.log(user);
+    console.log("work please");
   }
 
   return (
