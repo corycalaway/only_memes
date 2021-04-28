@@ -14,9 +14,11 @@ function NavHeader() {
       credit = data.me.credit;
       return (
         <>
+          <NavDropdown.Divider />
           <Button variant="outline-light">
             {credit} credits <i class="fas fa-money-bill"></i>
           </Button>
+          <NavDropdown.Divider />
         </>
       );
     }
@@ -26,12 +28,11 @@ function NavHeader() {
     if (Auth.loggedIn()) {
       return (
         <>
-          {Credit()}
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/profile">My Memes</Nav.Link>
           <Nav.Link href="/community">Community</Nav.Link>
           <Nav.Link href="/aboutus">About Us</Nav.Link>
-
+          {Credit()}
           <Nav.Link href="/" onClick={() => Auth.logout()}>
             Logout
           </Nav.Link>
