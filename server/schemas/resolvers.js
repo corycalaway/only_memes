@@ -91,6 +91,7 @@ const resolvers = {
     addCollection: async (parent, { memeId }, context) => {
       if (context.user) {
         let updateCredit = await User.findByIdAndUpdate(
+          { _id: context.user._id },
           { $inc: { credit: -1 } },
           { new: true }
         ).populate("memes");
