@@ -11,6 +11,7 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+
 const client = new ApolloClient({
   request: (operation) => {
     const token = localStorage.getItem("id_token");
@@ -28,7 +29,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <main>
-          <NavHeader />
+          <NavHeader className="monster"/>
           {/* <Profile /> */}
           {/* <Home /> */}
           {/* <Aboutus /> */}

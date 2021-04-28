@@ -114,21 +114,21 @@ const Cardpack = () => {
               <Card style={{ width: "20rem" }}>
                 <img src={cardpackImage} alt="" />
               </Card>
-
-              <OpenPack />
             </Row>
 
-            <Row className="justify-content-center">
-              {" "}
-              <Button
-                style={buttonStyle}
-                variant="dark"
-                type="submit"
-                onClick={handleFormSubmit}
-              >
-                Get Memes!
-              </Button>
-            </Row>
+            {Auth.loggedIn() ? (
+              <Row className="justify-content-center">
+                {" "}
+                <Button
+                  style={buttonStyle}
+                  variant="dark"
+                  type="submit"
+                  onClick={handleFormSubmit}
+                >
+                  Get Memes!
+                </Button>
+              </Row>
+            ) : null}
 
             {enoughCredits <= 0 && (
               <Row className="justify-content-center">
@@ -150,6 +150,7 @@ const Cardpack = () => {
           </Card.Body>
         </Card>
       </Row>
+      <OpenPack />
     </Container>
   );
 };
