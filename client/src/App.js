@@ -6,11 +6,10 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Community from "./pages/Community";
-
+import Store from "./pages/Store";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -29,7 +28,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <main>
-          <NavHeader className="monster"/>
+          <NavHeader className="monster" />
           {/* <Profile /> */}
           {/* <Home /> */}
           {/* <Aboutus /> */}
@@ -38,6 +37,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/store" component={Store} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/aboutus" component={Aboutus} />
             <Route exact path="/profile" component={Profile} />
