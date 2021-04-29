@@ -15,6 +15,8 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
+    stripeId: String
+    stripeType: String
     credit: Int
     memes: [Meme]
   }

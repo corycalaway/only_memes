@@ -2,7 +2,7 @@ const { User, Meme, Category } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 require("dotenv").config();
-const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const stripe = require("stripe")("sk_test_51IlTtaBUkwJkuKUZ25btIPXZVhR9Rph59BwcFvC0oTaKPZxKEmGO9GMalPYGDEVLX4Mzu34ZMxyyzXckilR8bqEm00mvyIGpRd");
 const publicVar = "sk_test_51IlTtaBUkwJkuKUZ25btIPXZVhR9Rph59BwcFvC0oTaKPZxKEmGO9GMalPYGDEVLX4Mzu34ZMxyyzXckilR8bqEm00mvyIGpRd"
 const publicProd = "prod_JOKk1cEFYUvi2E"
 
@@ -142,27 +142,53 @@ const resolvers = {
     },
     userPurchase: async (parent, {source}, context) => {
 console.log(source)
-      if(context.user) {
-    
 
-        const user = await User.findByIdAndUpdate(context.user._id)
+   
+      if (context.user) {
+
+          const user = await User.findByIdAndUpdate(context.user._id)
 
         if (!user) {
           console.log("error")
         }
-        console.log(publicVar)
-        const customer = publicVar.customers.create({
-          email: user.email,
-          source,
-          plan: "prod_JOKk1cEFYUvi2E"
-        })
-        
-        user.stripeId = customer.id;
-        user.type = "paid";
-        await user.save();
-        return user
 
+        const paymentIntent = await stripe.paymentIntents.create({
+          amount: 999,
+          currency: "usd"
+        });
+        console.log(paymentIntent.client_secret)
+        res.send({
+          clientSecret: paymentIntent.client_secret
+        });
+
+
+        
       }
+      // if(context.user) {
+    
+
+      //   const user = await User.findByIdAndUpdate(context.user._id)
+
+      //   if (!user) {
+      //     console.log("error")
+      //   }
+      //   console.log(stripe.customers)
+      //   const customer = stripe.customers.create({
+      //     email: user.email,
+      //     source,
+          
+      //   })
+
+
+        
+      //   console.log(user)
+      //   console.log(customer)
+      //   user.stripeId = customer.id;
+      //   user.type = "paid";
+      //   await user.save();
+      //   return user
+
+      // }
     },
   },
 };
