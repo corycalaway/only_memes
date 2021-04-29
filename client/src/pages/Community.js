@@ -37,9 +37,9 @@ const Community = (params) => {
 
   return (
     <>
-      <Jumbotron>
-        <Container fluid>
-          <Row className="justify-content-center">
+      <Container fluid>
+        <Jumbotron>
+          <Row className="j</Jumbotron>ustify-content-center">
             <Card style={{ width: "35rem" }}>
               <Card.Body>
                 <Row className="justify-content-center">
@@ -64,11 +64,12 @@ const Community = (params) => {
               </Card.Body>
             </Card>
           </Row>
-        </Container>
-      </Jumbotron>
+        </Jumbotron>
+      </Container>
+
       {searchedUser ? (
-        <Jumbotron>
-          <Container fluid>
+        <Container fluid>
+          <Jumbotron>
             <Row className="justify-content-center">
               {searchedUser.memes.map((meme) => (
                 <Card key={meme._id} style={{ width: "20rem", margin: "1rem" }}>
@@ -85,16 +86,16 @@ const Community = (params) => {
                 </Card>
               ))}
             </Row>
-          </Container>
-        </Jumbotron>
+          </Jumbotron>
+        </Container>
       ) : (
-        <Jumbotron>
-          <Container fluid>
+        <Container fluid>
+          <Jumbotron>
             <Row className="justify-content-center">
               <h3>No user with that username found!</h3>
             </Row>
-          </Container>
-        </Jumbotron>
+          </Jumbotron>
+        </Container>
       )}
     </>
   );
