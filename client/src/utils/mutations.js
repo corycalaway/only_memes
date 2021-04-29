@@ -63,3 +63,12 @@ export const ADD_CREDITS = gql`
     }
   }
 `;
+
+export const SUBSCRIPTION = gql`
+mutation userPurchase($source: String!) {
+  userPurchase(source: $source) {
+username
+
+  }
+}
+`;

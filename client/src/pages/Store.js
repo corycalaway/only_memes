@@ -5,7 +5,7 @@ import { QUERY_STRIPE_SESS } from "../utils/queries";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLazyQuery } from "@apollo/react-hooks";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { ADD_CREDITS } from "../utils/mutations";
+import { ADD_CREDITS, SUBSCRIPTION } from "../utils/mutations";
 import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 import StripeCheckout from 'react-stripe-checkout'
 require('dotenv').config()
@@ -17,7 +17,7 @@ const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 const Store = () => {
   const [getStripeSess, { data }] = useLazyQuery(QUERY_STRIPE_SESS);
   const [addCredits, { error }] = useMutation(ADD_CREDITS);
-  
+  const [subscription] = useMutation(SUBSCRIPTION);
   // let stripeHandler = StripeCheckout.configure({
   //   key: stripePromise,
   //   locale: 'en',
@@ -50,9 +50,9 @@ const Store = () => {
   //     } 
   //   }
   //   return (
-    
+
   //   <form onSubmit={handleSubmit}> 
-     
+
   //     <CardElement />
   //     <button type="submit">Pay</button>
   //    I'm a form
@@ -71,7 +71,7 @@ const Store = () => {
   // }, [data]);
 
   // async function submitCheckout() {
-    
+
   //   // let price = 1200
   //   // stripeHandler.open({
   //   //   amount: price
@@ -86,23 +86,23 @@ const Store = () => {
         console.log("first response");
         return response.json();
       })
-      // .then(function (responseJson) {
-      //   console.log("second promise response");
-      //   var clientSecret = responseJson.client_secret;
-      //   // Call stripe.confirmCardPayment() with the client secret.
-      //   stripe.retrievePaymentIntent(clientSecret).then(function (response) {
-      //     if (
-      //       response.paymentIntent &&
-      //       response.paymentIntent.status === "succeeded"
-      //     ) {
-      //       // Handle successful payment here
-      //       addCredits();
-      //       console.log("payment successful");
-      //     } else {
-      //       // Handle unsuccessful, processing, or canceled payments and API errors here
-      //     }
-      //   });
-      // });
+    // .then(function (responseJson) {
+    //   console.log("second promise response");
+    //   var clientSecret = responseJson.client_secret;
+    //   // Call stripe.confirmCardPayment() with the client secret.
+    //   stripe.retrievePaymentIntent(clientSecret).then(function (response) {
+    //     if (
+    //       response.paymentIntent &&
+    //       response.paymentIntent.status === "succeeded"
+    //     ) {
+    //       // Handle successful payment here
+    //       addCredits();
+    //       console.log("payment successful");
+    //     } else {
+    //       // Handle unsuccessful, processing, or canceled payments and API errors here
+    //     }
+    //   });
+    // });
     console.log("the response is", response);
     // return response;
   }
@@ -117,20 +117,21 @@ const Store = () => {
             <Card.Text>$9.99</Card.Text>
             {Auth.loggedIn() ? (
               <>
-                <StripeCheckout 
-                token={(token) => {
-                  console.log(token)
-                  if(token){
-                    console.log("chargeit")
-                    addCredits()
-                  } else {
-                    console.log("don't")
+            
+                  <StripeCheckout amount={999}
+                    token={async token => {
+                      console.log(token)
+                      const response = await subscription({
+                        variables: { source: token.id }
+                      })
 
-                  }
-                }}
-                  stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
+                      console.log(response)
+
+
+                    }}
+                    stripeKey="pk_test_51IlTtaBUkwJkuKUZFnJfhMskFb19fE0lGkZBKaxBsY44lxavB6DMfg88D31jw8tdcFGSQcjt8cbHIQVNmtJCkIGA00TSTd0gD9"
+                  />
                 
-                />
               </>
             ) : (
               <span>(log in to check out)</span>
@@ -139,7 +140,7 @@ const Store = () => {
         </Card>
       </Row>
     </Container>
-   
+
   );
 };
 

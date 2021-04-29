@@ -43,6 +43,7 @@ const typeDefs = gql`
     ): Meme
     addCollection(memeId: ID!): User
     addUserCredits: User
+    userPurchase(source: String!): User
   }
 
   type Auth {

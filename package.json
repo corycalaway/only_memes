@@ -24,6 +24,7 @@
   "homepage": "https://github.com/corycalaway/only_memes#readme",
   "dependencies": {
     "@stripe/react-stripe-js": "^1.4.0",
+    "dotenv": "^8.2.0",
     "if-env": "^1.0.4"
   },
   "devDependencies": {
