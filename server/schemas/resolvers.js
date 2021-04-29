@@ -36,16 +36,16 @@ const resolvers = {
         //   { new: true }
         // )
       
-        const customer = stripe.customers.create({
-          email: user.email,
-          source,
-          plan: price_1IlY53BUkwJkuKUZgH0VUkHr
-        })
+        // const customer = stripe.customers.create({
+        //   email: user.email,
+        //   source,
+        //   price: price_1IlY53BUkwJkuKUZgH0VUkHr
+        // })
 
         console.log(customer)
         console.log({client_secret: paymentIntent.client_secret})
         
-        return { client_secret: paymentIntent.client_secret }
+        return ({ client_secret: paymentIntent.client_secret })
         // user.stripeId = customer.id;
         // user.type = "paid";
         // await user.save();
