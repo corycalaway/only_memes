@@ -2,7 +2,7 @@ const { User, Meme, Category } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 // require("dotenv").config();
-const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const stripe = require("stripe")("pk_test_51IlTtaBUkwJkuKUZFnJfhMskFb19fE0lGkZBKaxBsY44lxavB6DMfg88D31jw8tdcFGSQcjt8cbHIQVNmtJCkIGA00TSTd0gD9");
 
 const resolvers = {
   Query: {
@@ -55,6 +55,25 @@ const resolvers = {
         cancel_url: `${url}/`,
       });
 
+      const account = await stripe.accounts.create({
+        type: 'custom',
+        country: 'US',
+        business_type: 'company',
+        capabilities: {
+          card_payments: {
+            requested: true,
+          },
+          transfers: {
+            requested: true,
+          },
+        },
+        settings: {
+          payments: {
+            statement_descriptor: 'RUNNER CLUB',
+          },
+        },
+      });
+      
       return { session: session.id };
     },
   },
