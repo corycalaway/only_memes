@@ -10,17 +10,21 @@ const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 const Store = () => {
   return (
     <Container fluid>
-      <Row className="justify-content-left">
-        <Card style={{ width: "20rem", margin: "1rem" }}>
-          <Card.Body>
-            <Card.Title>10 Credits</Card.Title>
-            <Card.Text>$9.99</Card.Text>
-            <Button>
-              Buy Bundle <i class="fas fa-money-bill"></i>
-            </Button>
-          </Card.Body>
-        </Card>
-      </Row>
+      <Jumbotron>
+        <Row className="justify-content-center">
+          <h3>10 Credits</h3>{" "}
+        </Row>
+        <Row className="justify-content-center">
+          {" "}
+          <h3>$9.99</h3>
+        </Row>
+        <Row className="justify-content-center">
+          {" "}
+          <Button>
+            Buy Bundle <i className="fas fa-money-bill"></i>
+          </Button>
+        </Row>
+      </Jumbotron>
     </Container>
   );
 };

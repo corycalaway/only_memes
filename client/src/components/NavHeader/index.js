@@ -15,9 +15,8 @@ function NavHeader() {
       return (
         <>
           <NavDropdown.Divider />
-          <Button variant="outline-light">
-            <Nav.Link href="/store" />
-            {credit} credits <i class="fas fa-money-bill"></i>
+          <Button href="/store" variant="outline-light">
+            {credit} credits <i className="fas fa-money-bill"></i>
           </Button>
         </>
       );
