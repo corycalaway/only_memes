@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Auth from "../utils/auth";
 import { Container, Row, Jumbotron, Card, Button } from "react-bootstrap";
-import { QUERY_STRIPE_SESS } from "../utils/queries";
+import { QUERY_STRIPE_SESS, SUBSCRIPTION } from "../utils/queries";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLazyQuery } from "@apollo/react-hooks";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { ADD_CREDITS, SUBSCRIPTION } from "../utils/mutations";
+import { ADD_CREDITS } from "../utils/mutations";
 import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 import StripeCheckout from 'react-stripe-checkout'
 require('dotenv').config()
@@ -17,7 +17,8 @@ const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 const Store = () => {
   const [getStripeSess, { data }] = useLazyQuery(QUERY_STRIPE_SESS);
   const [addCredits, { error }] = useMutation(ADD_CREDITS);
-  const [subscription] = useMutation(SUBSCRIPTION);
+  const [subscription] = useLazyQuery(SUBSCRIPTION);
+  const [clientSecret, setClientSecret] = useState('');
   // let stripeHandler = StripeCheckout.configure({
   //   key: stripePromise,
   //   locale: 'en',

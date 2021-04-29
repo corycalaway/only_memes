@@ -9,6 +9,73 @@ const publicProd = "prod_JOKk1cEFYUvi2E"
 
 const resolvers = {
   Query: {
+    userPurchase: async (parent, { source }, context) => {
+      console.log(source)
+
+
+      if (context.user) {
+
+        const user = await User.findByIdAndUpdate(context.user._id)
+
+        if (!user) {
+          console.log("error")
+        }
+
+        const paymentIntent = await stripe.paymentIntents.create({
+          amount: 999,
+
+          currency: "usd"
+        });
+        console.log(paymentIntent.client_secret)
+        // res.send({
+        //   clientSecret: paymentIntent.client_secret
+        // });
+
+        let updatePurchase = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { stripeId: paymentIntent.client_secret } ,
+          { new: true }
+        )
+      
+
+        console.log(updatePurchase)
+
+
+        console.log(user)
+        
+        return user
+        // user.stripeId = customer.id;
+        // user.type = "paid";
+        // await user.save();
+        // return user
+
+      }
+      // if(context.user) {
+
+
+      //   const user = await User.findByIdAndUpdate(context.user._id)
+
+      //   if (!user) {
+      //     console.log("error")
+      //   }
+      //   console.log(stripe.customers)
+      //   const customer = stripe.customers.create({
+      //     email: user.email,
+      //     source,
+
+      //   })
+
+
+
+      //   console.log(user)
+      //   console.log(customer)
+      //   user.stripeId = customer.id;
+      //   user.type = "paid";
+      //   await user.save();
+      //   return user
+
+      // }
+    },
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
@@ -140,56 +207,7 @@ const resolvers = {
         );
       }
     },
-    userPurchase: async (parent, {source}, context) => {
-console.log(source)
-
    
-      if (context.user) {
-
-          const user = await User.findByIdAndUpdate(context.user._id)
-
-        if (!user) {
-          console.log("error")
-        }
-
-        const paymentIntent = await stripe.paymentIntents.create({
-          amount: 999,
-          currency: "usd"
-        });
-        console.log(paymentIntent.client_secret)
-        res.send({
-          clientSecret: paymentIntent.client_secret
-        });
-
-
-        
-      }
-      // if(context.user) {
-    
-
-      //   const user = await User.findByIdAndUpdate(context.user._id)
-
-      //   if (!user) {
-      //     console.log("error")
-      //   }
-      //   console.log(stripe.customers)
-      //   const customer = stripe.customers.create({
-      //     email: user.email,
-      //     source,
-          
-      //   })
-
-
-        
-      //   console.log(user)
-      //   console.log(customer)
-      //   user.stripeId = customer.id;
-      //   user.type = "paid";
-      //   await user.save();
-      //   return user
-
-      // }
-    },
   },
 };
 module.exports = resolvers;
