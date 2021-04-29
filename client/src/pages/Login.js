@@ -12,8 +12,6 @@ const Login = () => {
     console.log(Auth.loggedIn());
     event.preventDefault();
     try {
-      console.log("hi");
-      console.log(formState.username, formState.password);
       const mutationResponse = await login({
         variables: {
           username: formState.username,
