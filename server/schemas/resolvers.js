@@ -9,9 +9,8 @@ const publicProd = "prod_JOKk1cEFYUvi2E"
 
 const resolvers = {
   Query: {
-    userPurchase: async (parent, args, context) => {
-      console.log(args)
-
+    userPurchase: async (parent, {source}, context) => {
+     
 
       if (context.user) {
 
@@ -37,7 +36,13 @@ const resolvers = {
         //   { new: true }
         // )
       
+        const customer = stripe.customers.create({
+          email: user.email,
+          source,
+          plan: price_1IlY53BUkwJkuKUZgH0VUkHr
+        })
 
+        console.log(customer)
         console.log({client_secret: paymentIntent.client_secret})
         
         return { client_secret: paymentIntent.client_secret }

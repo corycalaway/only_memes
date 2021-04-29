@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Auth from "../utils/auth";
 import { Container, Row, Jumbotron, Card, Button } from "react-bootstrap";
-import { QUERY_STRIPE_SESS, SUBSCRIPTION } from "../utils/queries";
+import { QUERY_STRIPE_SESS, SUBSCRIPTION, QUERY_ME } from "../utils/queries";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLazyQuery } from "@apollo/react-hooks";
 import { useMutation, useQuery } from "@apollo/react-hooks";
@@ -19,6 +19,7 @@ const Store = () => {
   const [addCredits, { error }] = useMutation(ADD_CREDITS);
   const [subscription] = useLazyQuery(SUBSCRIPTION);
   const [clientSecret, setClientSecret] = useState('');
+  const { loading, data: userData } = useQuery(QUERY_ME);
   // let stripeHandler = StripeCheckout.configure({
   //   key: stripePromise,
   //   locale: 'en',
@@ -125,8 +126,17 @@ const Store = () => {
                       const response = await subscription({
                         variables: { source: token.id }
                       })
-
                       console.log(response)
+
+                      const creditsGalore = await addCredits({
+                        refetchQueries: [
+                          { query: QUERY_ME }
+                        ]
+                      }
+                      
+                      
+                        
+                      )
 
 
                     }}

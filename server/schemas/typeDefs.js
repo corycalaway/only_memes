@@ -27,7 +27,7 @@ const typeDefs = gql`
     users: [User]
     memes: [Meme]
     getStripeSess: StripeSess
-    userPurchase: Payment
+    userPurchase(source: String): Payment
   }
 
   type Mutation {
