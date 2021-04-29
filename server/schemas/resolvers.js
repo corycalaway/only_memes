@@ -47,14 +47,34 @@ const resolvers = {
         price: price.id,
         quantity: 10,
       });
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        line_items,
-        mode: "payment",
-        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/`,
-      });
+      // const session = await stripe.checkout.sessions.create({
+      //   payment_method_types: ["card"],
+      //   line_items,
+      //   mode: "payment",
+      //   success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+      //   cancel_url: `${url}/`,
+      // });
 
+      try {
+        const session = await stripe.paymentIntents.create({
+          amount,
+          currencty: "USD",
+          payment_method_types: ["card"],
+          line_items,
+          mode: "payment",
+          confirm: true
+        })
+        console.log(payment)
+        return resolvers.status(200).json({
+          confirm: "abc123"
+        })
+
+      } catch (error) {
+
+
+      }
+
+      console.log(session)
       return { session: session.id };
     },
   },
