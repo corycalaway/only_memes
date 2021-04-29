@@ -10,7 +10,7 @@ import Store from "./pages/Store";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import Success from "./pages/Success";
 const client = new ApolloClient({
   request: (operation) => {
     const token = localStorage.getItem("id_token");
@@ -42,6 +42,7 @@ function App() {
             <Route exact path="/aboutus" component={Aboutus} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/community" component={Community} />
+            <Route exact path="/success" component={Success} />
             {/* <Route exact path="/products/:id" component={Detail} />
             <Route exact path="/success" component={Success} /> */}
             {/* <Route component={NoMatch} /> */}

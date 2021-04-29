@@ -4,11 +4,11 @@ import { Container, Row, Jumbotron, Card, Button } from "react-bootstrap";
 import { QUERY_STRIPE_SESS } from "../utils/queries";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLazyQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { ADD_CREDITS } from "../utils/mutations";
-import { useMutation } from "@apollo/react-hooks";
-
 // might have to change later
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
+const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 const Store = () => {
   const [getStripeSess, { data }] = useLazyQuery(QUERY_STRIPE_SESS);
@@ -23,10 +23,37 @@ const Store = () => {
     }
   }, [data]);
 
-  function submitCheckout() {
-    getStripeSess();
-    console.log("cooooooooooooooooooooool");
-    addCredits();
+  async function submitCheckout() {
+    await getStripeSess();
+    await confirmPayment();
+  }
+
+  async function confirmPayment() {
+    console.log("confirmPayment working");
+    var response = await fetch("/secret")
+      .then(function (response) {
+        console.log("first response");
+        return response.json();
+      })
+      .then(function (responseJson) {
+        console.log("second promise response");
+        var clientSecret = responseJson.client_secret;
+        // Call stripe.confirmCardPayment() with the client secret.
+        stripe.retrievePaymentIntent(clientSecret).then(function (response) {
+          if (
+            response.paymentIntent &&
+            response.paymentIntent.status === "succeeded"
+          ) {
+            // Handle successful payment here
+            addCredits();
+            console.log("payment successful");
+          } else {
+            // Handle unsuccessful, processing, or canceled payments and API errors here
+          }
+        });
+      });
+    console.log("the response is", response);
+    // return response;
   }
 
   return (
