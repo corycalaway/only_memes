@@ -15,6 +15,8 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
+    stripeId: String
+    stripeType: String
     credit: Int
     memes: [Meme]
   }
@@ -25,6 +27,7 @@ const typeDefs = gql`
     users: [User]
     memes: [Meme]
     getStripeSess: StripeSess
+    userPurchase(source: String): Payment
   }
 
   type Mutation {
@@ -43,6 +46,7 @@ const typeDefs = gql`
     ): Meme
     addCollection(memeId: ID!): User
     addUserCredits: User
+    
   }
 
   type Auth {
@@ -52,6 +56,10 @@ const typeDefs = gql`
 
   type StripeSess {
     session: ID
+  }
+
+  type Payment {
+    client_secret: String
   }
 `;
 

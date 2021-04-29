@@ -23,6 +23,14 @@ const userSchema = new Schema(
       required: true,
       minlength: 4,
     },
+    stripeId: {
+      type: String
+    },
+    stripeType: {
+      type: String,
+      default: "free-trial"
+    },
+
     credit: {
       type: Number,
     },
