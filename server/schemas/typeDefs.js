@@ -27,7 +27,7 @@ const typeDefs = gql`
     users: [User]
     memes: [Meme]
     getStripeSess: StripeSess
-    userPurchase(source: String!): User
+    userPurchase: Payment
   }
 
   type Mutation {
@@ -59,7 +59,7 @@ const typeDefs = gql`
   }
 
   type Payment {
-    paymentIntent: String
+    client_secret: String
   }
 `;
 

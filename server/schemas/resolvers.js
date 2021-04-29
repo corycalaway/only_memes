@@ -9,8 +9,8 @@ const publicProd = "prod_JOKk1cEFYUvi2E"
 
 const resolvers = {
   Query: {
-    userPurchase: async (parent, { source }, context) => {
-      console.log(source)
+    userPurchase: async (parent, args, context) => {
+      console.log(args)
 
 
       if (context.user) {
@@ -31,16 +31,16 @@ const resolvers = {
         //   clientSecret: paymentIntent.client_secret
         // });
 
-        let updatePurchase = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { stripeId: paymentIntent.client_secret } ,
-          { new: true }
-        )
+        // let updatePurchase = await User.findByIdAndUpdate(
+        //   { _id: context.user._id },
+        //   { stripeId: paymentIntent.client_secret } ,
+        //   { new: true }
+        // )
       
 
-       console.log(updatePurchase)
+        console.log({client_secret: paymentIntent.client_secret})
         
-        return { updatePurchase}
+        return { client_secret: paymentIntent.client_secret }
         // user.stripeId = customer.id;
         // user.type = "paid";
         // await user.save();

@@ -56,10 +56,11 @@ export const QUERY_STRIPE_SESS = gql`
 
 
 export const SUBSCRIPTION = gql`
-query userPurchase($source: String!) {
-  userPurchase(source: $source) {
+query userPurchase {
+  userPurchase {
 
-      stripeId
+client_secret
+      
      
   }
 }
