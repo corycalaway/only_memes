@@ -31,23 +31,6 @@ const Store = () => {
 
   return (
     <Container fluid>
-<<<<<<< HEAD
-      <Jumbotron>
-        <Row className="justify-content-center">
-          <h3>10 Credits</h3>{" "}
-        </Row>
-        <Row className="justify-content-center">
-          {" "}
-          <h3>$9.99</h3>
-        </Row>
-        <Row className="justify-content-center">
-          {" "}
-          <Button>
-            Buy Bundle <i className="fas fa-money-bill"></i>
-          </Button>
-        </Row>
-      </Jumbotron>
-=======
       <Row className="justify-content-left">
         <Card style={{ width: "20rem", margin: "1rem" }}>
           <Card.Body>
@@ -63,7 +46,6 @@ const Store = () => {
           </Card.Body>
         </Card>
       </Row>
->>>>>>> feature/bret
     </Container>
   );
 };
