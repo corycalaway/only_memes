@@ -128,7 +128,7 @@ const Store = () => {
 
                   }
                 }}
-                  stripeKey="pk_test_51IlTtaBUkwJkuKUZFnJfhMskFb19fE0lGkZBKaxBsY44lxavB6DMfg88D31jw8tdcFGSQcjt8cbHIQVNmtJCkIGA00TSTd0gD9"
+                  stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
                 
                 />
               </>
