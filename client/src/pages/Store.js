@@ -6,9 +6,15 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useLazyQuery } from "@apollo/react-hooks";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { ADD_CREDITS } from "../utils/mutations";
-import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
-import StripeCheckout from 'react-stripe-checkout'
-require('dotenv').config()
+import coinImage from "../assets/img/gold-coin.png";
+import {
+  Elements,
+  CardElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
+import StripeCheckout from "react-stripe-checkout";
+require("dotenv").config();
 
 // might have to change later
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
@@ -18,7 +24,7 @@ const Store = () => {
   const [getStripeSess, { data }] = useLazyQuery(QUERY_STRIPE_SESS);
   const [addCredits, { error }] = useMutation(ADD_CREDITS);
   const [subscription] = useLazyQuery(SUBSCRIPTION);
-  const [clientSecret, setClientSecret] = useState('');
+  const [clientSecret, setClientSecret] = useState("");
   const { loading, data: userData } = useQuery(QUERY_ME);
   // let stripeHandler = StripeCheckout.configure({
   //   key: stripePromise,
@@ -45,15 +51,14 @@ const Store = () => {
   //       try {
   //     getStripeSess();
 
-
   //       } catch (error) {
   //         console.log(error)
   //       }
-  //     } 
+  //     }
   //   }
   //   return (
 
-  //   <form onSubmit={handleSubmit}> 
+  //   <form onSubmit={handleSubmit}>
 
   //     <CardElement />
   //     <button type="submit">Pay</button>
@@ -83,11 +88,10 @@ const Store = () => {
 
   async function confirmPayment() {
     console.log("confirmPayment working");
-    var response = await fetch("/secret")
-      .then(function (response) {
-        console.log("first response");
-        return response.json();
-      })
+    var response = await fetch("/secret").then(function (response) {
+      console.log("first response");
+      return response.json();
+    });
     // .then(function (responseJson) {
     //   console.log("second promise response");
     //   var clientSecret = responseJson.client_secret;
@@ -110,48 +114,48 @@ const Store = () => {
   }
 
   return (
-
     <Container fluid>
-      <Row className="justify-content-left">
-        <Card style={{ width: "20rem", margin: "1rem" }}>
+      <Row className="justify-content-center">
+        <Card style={{ width: "25rem", margin: "5rem" }}>
           <Card.Body>
-            <Card.Title>10 Credits</Card.Title>
-            <Card.Text>$9.99</Card.Text>
-            {Auth.loggedIn() ? (
-              <>
-            
-                  <StripeCheckout amount={999}
-                    token={async token => {
-                      console.log(token)
+            <Row className="justify-content-center">
+              <Card.Title>10 Credits</Card.Title>
+            </Row>
+            <Row className="justify-content-center">
+              <Card.Text>$9.99</Card.Text>
+            </Row>
+            <Row className="justify-content-center">
+              <Card style={{ width: "20rem" }}>
+                <img src={coinImage} alt="" />
+              </Card>
+            </Row>
+            <Row className="justify-content-center">
+              {Auth.loggedIn() ? (
+                <>
+                  <StripeCheckout
+                    amount={999}
+                    token={async (token) => {
+                      console.log(token);
                       const response = await subscription({
-                        variables: { source: token.id }
-                      })
-                      console.log(response)
+                        variables: { source: token.id },
+                      });
+                      console.log(response);
 
                       const creditsGalore = await addCredits({
-                        refetchQueries: [
-                          { query: QUERY_ME }
-                        ]
-                      }
-                      
-                      
-                        
-                      )
-
-
+                        refetchQueries: [{ query: QUERY_ME }],
+                      });
                     }}
                     stripeKey="pk_test_51IlTtaBUkwJkuKUZFnJfhMskFb19fE0lGkZBKaxBsY44lxavB6DMfg88D31jw8tdcFGSQcjt8cbHIQVNmtJCkIGA00TSTd0gD9"
                   />
-                
-              </>
-            ) : (
-              <span>(log in to check out)</span>
-            )}
+                </>
+              ) : (
+                <span>(log in to check out)</span>
+              )}
+            </Row>
           </Card.Body>
         </Card>
       </Row>
     </Container>
-
   );
 };
 
