@@ -59,7 +59,7 @@ const typeDefs = gql`
   }
 
   type Payment {
-    paymentIntent: User
+    paymentIntent: String
   }
 `;
 

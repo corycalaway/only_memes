@@ -38,12 +38,9 @@ const resolvers = {
         )
       
 
-        console.log(updatePurchase)
-
-
-        console.log(user)
+       console.log(updatePurchase)
         
-        return user
+        return { updatePurchase}
         // user.stripeId = customer.id;
         // user.type = "paid";
         // await user.save();
