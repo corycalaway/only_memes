@@ -2,30 +2,29 @@ const { User, Meme, Category } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 require("dotenv").config();
-const stripe = require("stripe")("sk_test_51IlTtaBUkwJkuKUZ25btIPXZVhR9Rph59BwcFvC0oTaKPZxKEmGO9GMalPYGDEVLX4Mzu34ZMxyyzXckilR8bqEm00mvyIGpRd");
-const publicVar = "sk_test_51IlTtaBUkwJkuKUZ25btIPXZVhR9Rph59BwcFvC0oTaKPZxKEmGO9GMalPYGDEVLX4Mzu34ZMxyyzXckilR8bqEm00mvyIGpRd"
-const publicProd = "prod_JOKk1cEFYUvi2E"
-
+const stripe = require("stripe")(
+  "sk_test_51IlTtaBUkwJkuKUZ25btIPXZVhR9Rph59BwcFvC0oTaKPZxKEmGO9GMalPYGDEVLX4Mzu34ZMxyyzXckilR8bqEm00mvyIGpRd"
+);
+const publicVar =
+  "sk_test_51IlTtaBUkwJkuKUZ25btIPXZVhR9Rph59BwcFvC0oTaKPZxKEmGO9GMalPYGDEVLX4Mzu34ZMxyyzXckilR8bqEm00mvyIGpRd";
+const publicProd = "prod_JOKk1cEFYUvi2E";
 
 const resolvers = {
   Query: {
-    userPurchase: async (parent, {source}, context) => {
-     
-
+    userPurchase: async (parent, { source }, context) => {
       if (context.user) {
-
-        const user = await User.findByIdAndUpdate(context.user._id)
+        const user = await User.findByIdAndUpdate(context.user._id);
 
         if (!user) {
-          console.log("error")
+          console.log("error");
         }
 
         const paymentIntent = await stripe.paymentIntents.create({
           amount: 999,
 
-          currency: "usd"
+          currency: "usd",
         });
-        console.log(paymentIntent.client_secret)
+        console.log(paymentIntent.client_secret);
         // res.send({
         //   clientSecret: paymentIntent.client_secret
         // });
@@ -35,25 +34,23 @@ const resolvers = {
         //   { stripeId: paymentIntent.client_secret } ,
         //   { new: true }
         // )
-      
+
         // const customer = stripe.customers.create({
         //   email: user.email,
         //   source,
         //   price: price_1IlY53BUkwJkuKUZgH0VUkHr
         // })
 
-        console.log(customer)
-        console.log({client_secret: paymentIntent.client_secret})
-        
-        return ({ client_secret: paymentIntent.client_secret })
+        // console.log(customer)
+        console.log({ client_secret: paymentIntent.client_secret });
+
+        return { client_secret: paymentIntent.client_secret };
         // user.stripeId = customer.id;
         // user.type = "paid";
         // await user.save();
         // return user
-
       }
       // if(context.user) {
-
 
       //   const user = await User.findByIdAndUpdate(context.user._id)
 
@@ -67,8 +64,6 @@ const resolvers = {
 
       //   })
 
-
-
       //   console.log(user)
       //   console.log(customer)
       //   user.stripeId = customer.id;
@@ -78,6 +73,7 @@ const resolvers = {
 
       // }
     },
+
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
@@ -134,22 +130,18 @@ const resolvers = {
           payment_method_types: ["card"],
           line_items,
           mode: "payment",
-          confirm: true
-        })
-        console.log(payment)
+          confirm: true,
+        });
+        console.log("payment is", payment);
         return resolvers.status(200).json({
-          confirm: "abc123"
-        })
-
-      } catch (error) {
-
-
-      }
+          confirm: "abc123",
+        });
+      } catch (error) {}
 
       const account = await stripe.accounts.create({
-        type: 'custom',
-        country: 'US',
-        business_type: 'company',
+        type: "custom",
+        country: "US",
+        business_type: "company",
         capabilities: {
           card_payments: {
             requested: true,
@@ -160,12 +152,12 @@ const resolvers = {
         },
         settings: {
           payments: {
-            statement_descriptor: 'RUNNER CLUB',
+            statement_descriptor: "RUNNER CLUB",
           },
         },
       });
-      
-      console.log(session)
+
+      console.log(session);
       return { session: session.id };
     },
   },
@@ -228,7 +220,6 @@ const resolvers = {
         );
       }
     },
-   
   },
 };
 module.exports = resolvers;

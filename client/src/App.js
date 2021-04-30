@@ -24,6 +24,7 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <ApolloProvider client={client}>
       <Router>
