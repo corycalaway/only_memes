@@ -39,14 +39,12 @@ const Aboutus = () => {
         <Row className="justify-content-center">
           <h3>Paul</h3>
           <p>
-            Web developer and U.S. Army veteran with a background in psychology,
-            and developmental training. On track go complete a full stack web
-            development program from the University of Utah. Newly developed
-            skills in JavaScript, Responsive Web Design, and Server-side
-            Development(Express.js, Node.js). Proven ability to create, develop,
-            and instruct lessons which increase knowledge and understanding in
-            the given subject. Consistently able to motivate and build profound
-            confidence in others performance and abilities.
+            Full Stack MERN Web developer committed to bring next level user
+            application design and experience. Front End stacks include but are
+            not limited to React.js, React-Bootstrap, PWA. Back End stacks
+            include but are not limited to MongoDB, GraphQL, MySQL, REST API.
+            Project and Responsibility driven committed to innovate new
+            experiences and ideas.
           </p>
           <Button
             variant="dark"
