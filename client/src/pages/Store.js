@@ -20,7 +20,6 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import StripeCheckout from "react-stripe-checkout";
-
 require("dotenv").config();
 
 // might have to change later
@@ -131,7 +130,7 @@ const Store = (props) => {
 
   //   );
   // }
-  let stripeRan = false;
+
   // useEffect(() => {
   //   console.log("useEffect triggered");
 
@@ -144,8 +143,8 @@ const Store = (props) => {
   // }, [stripeRan]);
   return (
     <Container fluid>
-      <Row className="justify-content-left">
-        <Card style={{ width: "20rem", margin: "1rem" }}>
+      <Row className="justify-content-center">
+        <Card style={{ width: "25rem", margin: "5rem" }}>
           <Card.Body>
             <Card.Title>10 Credits</Card.Title>
             <Card.Text>$9.99</Card.Text>
