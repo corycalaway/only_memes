@@ -6,6 +6,42 @@
  
 }
 
+.cardDisplay {
+  background-color: white;
+  background-size: 280px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 300px;
+  height: 570px;
+  will-change: transform;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12.5px 70px -15px rgba(50, 50, 73, 0.5), 0 17.5px 35px -37.5px rgba(0, 0, 0, 0.6);
+}
+
+.cardDisplay2 {
+position: absolute;
+  width: 100vw;
+  height: 100vh;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xtraCSS {
+ 
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial,
+    sans-serif;
+  
+  overflow: hidden;
+}
+
 @keyframes play {
    100% { background-position: 1900px; }
 }
