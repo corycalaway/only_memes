@@ -146,45 +146,51 @@ const Store = (props) => {
       <Row className="justify-content-center">
         <Card style={{ width: "25rem", margin: "5rem" }}>
           <Card.Body>
-            <Card.Title>10 Credits</Card.Title>
-            <Card.Text>$9.99</Card.Text>
-            {Auth.loggedIn() ? (
-              <>
-                <StripeCheckout
-                  amount={999}
-                  token={async (token) => {
-                    console.log(token);
-                    const response = await subscription({
-                      variables: { source: token.id },
-                    });
-                    console.log("end stripe checkout");
-                    console.log(response);
+            <Row className="justify-content-center">
+              <Card.Title>10 Credits</Card.Title>
+            </Row>
+            <Row className="justify-content-center">
+              <Card.Text>$9.99</Card.Text>
+            </Row>
+            <Row className="justify-content-center">
+              {Auth.loggedIn() ? (
+                <>
+                  <StripeCheckout
+                    amount={999}
+                    token={async (token) => {
+                      console.log(token);
+                      const response = await subscription({
+                        variables: { source: token.id },
+                      });
+                      console.log("end stripe checkout");
+                      console.log(response);
 
-                    const creditsGalore = await addCredits({
-                      refetchQueries: [{ query: QUERY_ME }],
-                    });
-                    handleShow();
-                    console.log("logging CreditsGalore");
-                    console.log(creditsGalore);
-                  }}
-                  stripeKey="pk_test_51IlTtaBUkwJkuKUZFnJfhMskFb19fE0lGkZBKaxBsY44lxavB6DMfg88D31jw8tdcFGSQcjt8cbHIQVNmtJCkIGA00TSTd0gD9"
-                />
-                <Modal
-                  show={show}
-                  onHide={handleClose}
-                  backdrop="static"
-                  keyboard={false}
-                  centered
-                >
-                  <Modal.Header closeButton>
-                    <Modal.Title>Success!</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>Thanks for your purchase!</Modal.Body>
-                </Modal>
-              </>
-            ) : (
-              <span>(log in to check out)</span>
-            )}
+                      const creditsGalore = await addCredits({
+                        refetchQueries: [{ query: QUERY_ME }],
+                      });
+                      handleShow();
+                      console.log("logging CreditsGalore");
+                      console.log(creditsGalore);
+                    }}
+                    stripeKey="pk_test_51IlTtaBUkwJkuKUZFnJfhMskFb19fE0lGkZBKaxBsY44lxavB6DMfg88D31jw8tdcFGSQcjt8cbHIQVNmtJCkIGA00TSTd0gD9"
+                  />
+                  <Modal
+                    show={show}
+                    onHide={handleClose}
+                    backdrop="static"
+                    keyboard={false}
+                    centered
+                  >
+                    <Modal.Header closeButton>
+                      <Modal.Title>Success!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Thanks for your purchase!</Modal.Body>
+                  </Modal>
+                </>
+              ) : (
+                <span>(log in to check out)</span>
+              )}
+            </Row>
           </Card.Body>
         </Card>
       </Row>
