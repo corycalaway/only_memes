@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { Form, Button, Container, Row, Jumbotron, Card } from "react-bootstrap";
 import { QUERY_USER } from "../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
+import RenderUser from "../components/SearchedUser";
 
-const Community = (params) => {
+const Community = () => {
   const [formState, setFormState] = useState({ username: "" });
+  const [searched, setSearched] = useState("");
+  const [displaySearched, setDisplaySearched] = useState(false);
 
   let username;
   let usernames;
@@ -22,12 +25,14 @@ const Community = (params) => {
         return user.username;
       });
       userIndex = usernames.indexOf(username);
-      console.log(data.users[userIndex]);
       searchedUser = data.users[userIndex];
+      setSearched(searchedUser);
+      setDisplaySearched(true);
     }
   };
 
   const handleChange = (event) => {
+    setDisplaySearched(false);
     const { name, value } = event.target;
     setFormState({
       ...formState,
@@ -39,7 +44,7 @@ const Community = (params) => {
     <>
       <Container fluid>
         <Jumbotron>
-          <Row className="j</Jumbotron>ustify-content-center">
+          <Row className="justify-content-center">
             <Card style={{ width: "35rem" }}>
               <Card.Body>
                 <Row className="justify-content-center">
@@ -66,37 +71,7 @@ const Community = (params) => {
           </Row>
         </Jumbotron>
       </Container>
-
-      {searchedUser ? (
-        <Container fluid>
-          <Jumbotron>
-            <Row className="justify-content-center">
-              {searchedUser.memes.map((meme) => (
-                <Card key={meme._id} style={{ width: "20rem", margin: "1rem" }}>
-                  <Card.Body>
-                    <Card.Img variant="top" src={meme.image} />
-                    <Card.Body>
-                      <Card.Title>{searchedUser.meme.title}</Card.Title>
-                      <Card.Text>Rarity: {searchedUser.meme.rarity}</Card.Text>
-                      <Card.Text>
-                        Category: {searchedUser.meme.category}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card.Body>
-                </Card>
-              ))}
-            </Row>
-          </Jumbotron>
-        </Container>
-      ) : (
-        <Container fluid>
-          <Jumbotron>
-            <Row className="justify-content-center">
-              <h3>No user with that username found!</h3>
-            </Row>
-          </Jumbotron>
-        </Container>
-      )}
+      {displaySearched ? <RenderUser user={searched} /> : null}
     </>
   );
 };

@@ -115,11 +115,18 @@ const Cardpack = () => {
   return (
     <Container fluid>
       <Row className="justify-content-center">
-        <Card style={{ width: "30rem" }}>
+        <Card className="text-center" style={{ width: "30rem" }}>
           <Card.Body>
-            <Col>
-              <h3>Login or Create an Account to Purchase a Pack of 3 Memes!</h3>
-            </Col>
+            {!Auth.loggedIn() ? (
+              <Col>
+                <h3>
+                  Login or Create an Account to Purchase a Pack of 3 Memes!
+                </h3>
+              </Col>
+            ) : (
+              <h3>Thanks for signing in!</h3>
+            )}
+
             <Row className="justify-content-center">
               <Card style={{ width: "20rem" }}>
                 <img src={cardpackImage} alt="" />
