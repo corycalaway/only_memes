@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
-import { Form, Button, Container, Row, Jumbotron, Card } from "react-bootstrap";
+import { Form, Button, Container, Row, Jumbotron, Card, Col } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { ADD_COLLECTION } from "../../utils/mutations";
 import { QUERY_MEMES, QUERY_ME } from "../../utils/queries";
@@ -9,6 +9,7 @@ import cardpackImage from "../../assets/img/memepack.png";
 import { useSelector, useDispatch } from "react-redux";
 import { addNewMemes, cardReset } from "../../utils/actions/";
 import OpenPack from "./OpenPack";
+import './style.css'
 
 const Cardpack = () => {
   const { data } = useQuery(QUERY_MEMES);
@@ -156,7 +157,9 @@ const Cardpack = () => {
           </Card.Body>
         </Card>
       </Row>
-      <OpenPack />
+                <Row>
+          <OpenPack className="xtraCSS" />
+          </Row>
     </Container>
   );
 };
