@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
-import { Form, Button, Container, Row, Jumbotron, Card, Col } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Container,
+  Row,
+  Jumbotron,
+  Card,
+  Col,
+} from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { ADD_COLLECTION } from "../../utils/mutations";
 import { QUERY_MEMES, QUERY_ME } from "../../utils/queries";
@@ -9,7 +17,7 @@ import cardpackImage from "../../assets/img/memepack.png";
 import { useSelector, useDispatch } from "react-redux";
 import { addNewMemes, cardReset } from "../../utils/actions/";
 import OpenPack from "./OpenPack";
-import './style.css'
+import "./style.css";
 
 const Cardpack = () => {
   const { data } = useQuery(QUERY_MEMES);
@@ -83,14 +91,9 @@ const Cardpack = () => {
                 variables: {
                   memeId: packMemes[i],
                 },
-                  refetchQueries: [
-                      { query: QUERY_ME }
-                  ]
+                refetchQueries: [{ query: QUERY_ME }],
               });
               Auth.loggedIn(token);
-               
-                  
-              
             } catch (e) {
               console.error(e);
             }
@@ -114,9 +117,9 @@ const Cardpack = () => {
       <Row className="justify-content-center">
         <Card style={{ width: "30rem" }}>
           <Card.Body>
-            <Row className="justify-content-center">
-              <h3>Purchase a Pack!</h3>
-            </Row>
+            <Col>
+              <h3>Login or Create an Account to Purchase a Pack of 3 Memes!</h3>
+            </Col>
             <Row className="justify-content-center">
               <Card style={{ width: "20rem" }}>
                 <img src={cardpackImage} alt="" />
@@ -157,9 +160,9 @@ const Cardpack = () => {
           </Card.Body>
         </Card>
       </Row>
-                <Row>
-          <OpenPack className="xtraCSS" />
-          </Row>
+      <Row>
+        <OpenPack className="xtraCSS" />
+      </Row>
     </Container>
   );
 };
