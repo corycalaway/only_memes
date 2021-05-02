@@ -80,12 +80,6 @@ db.once('open', async () => {
       category: "Dank"
     },
     {
-      title: 'Demon Slayer: Mom not home',
-      image: "https://res.cloudinary.com/accordingtocloud/image/upload/v1619495477/Demon-Slayer-Mom_snvhme.jpg",
-      rarity: "Worthless",
-      category: "Dank"
-    },
-    {
       title: 'Demon Slayer: People Talk',
       image: "https://res.cloudinary.com/accordingtocloud/image/upload/v1619495483/Demon-Slyer-People-Talking_ln2rlx.jpg",
       rarity: "Epic",
