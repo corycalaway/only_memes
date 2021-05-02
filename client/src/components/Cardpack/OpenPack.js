@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { QUERY_MEMES, QUERY_ME } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import { useSprings, Spring, animated, interpolate} from 'react-spring'
+import { useSprings, Spring, animated, interpolate } from 'react-spring'
 import { Form, Button, Container, Row, Jumbotron, Card, Col } from "react-bootstrap";
 import { useGesture } from 'react-use-gesture'
 import './style.css'
@@ -115,7 +115,7 @@ const Opened = () => {
                 {
                     // This is the card itself, we're binding our gesture to it (and inject its index so we know which is which)
                 }
-                        <animated.div className="cardDisplay  "  {...bind(i)} style={{ transform: this.interpolate([rot, scale], trans), backgroundImage: `url(${memedisplay[i].image})` }} />
+                <animated.div className="cardDisplay  "  {...bind(i)} style={{ transform: interpolate([rot, scale], trans), backgroundImage: `url(${memedisplay[i].image})` }} />
             </animated.div>
             </Col>
             </>
