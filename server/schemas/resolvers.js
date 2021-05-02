@@ -24,54 +24,10 @@ const resolvers = {
 
           currency: "usd",
         });
-        console.log(paymentIntent.client_secret);
-        // res.send({
-        //   clientSecret: paymentIntent.client_secret
-        // });
 
-        // let updatePurchase = await User.findByIdAndUpdate(
-        //   { _id: context.user._id },
-        //   { stripeId: paymentIntent.client_secret } ,
-        //   { new: true }
-        // )
-
-        // const customer = stripe.customers.create({
-        //   email: user.email,
-        //   source,
-        //   price: price_1IlY53BUkwJkuKUZgH0VUkHr
-        // })
-
-        // console.log(customer)
-        console.log({ client_secret: paymentIntent.client_secret });
 
         return { client_secret: paymentIntent.client_secret };
-        // user.stripeId = customer.id;
-        // user.type = "paid";
-        // await user.save();
-        // return user
       }
-      // if(context.user) {
-
-      //   const user = await User.findByIdAndUpdate(context.user._id)
-
-      //   if (!user) {
-      //     console.log("error")
-      //   }
-      //   console.log(stripe.customers)
-      //   const customer = stripe.customers.create({
-      //     email: user.email,
-      //     source,
-
-      //   })
-
-      //   console.log(user)
-      //   console.log(customer)
-      //   user.stripeId = customer.id;
-      //   user.type = "paid";
-      //   await user.save();
-      //   return user
-
-      // }
     },
 
     me: async (parent, args, context) => {
@@ -99,8 +55,6 @@ const resolvers = {
       const product = await stripe.products.create({
         name: "Credits",
         description: "Meme credits - store currency",
-        // add a pikachu meme coin img here
-        // images: [`${url}/images/${products[i].image}`],
       });
 
       // generate price id using the product id
@@ -115,13 +69,6 @@ const resolvers = {
         price: price.id,
         quantity: 10,
       });
-      // const session = await stripe.checkout.sessions.create({
-      //   payment_method_types: ["card"],
-      //   line_items,
-      //   mode: "payment",
-      //   success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-      //   cancel_url: `${url}/`,
-      // });
 
       try {
         const session = await stripe.paymentIntents.create({
@@ -136,7 +83,7 @@ const resolvers = {
         return resolvers.status(200).json({
           confirm: "abc123",
         });
-      } catch (error) {}
+      } catch (error) { }
 
       const account = await stripe.accounts.create({
         type: "custom",

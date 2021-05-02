@@ -133,34 +133,26 @@ const Opened = () => {
   );
   // Now we
 
-  if (memedisplay.length > 0) {
-    return props.map(({ x, y, rot, scale }, i) => (
-      <Col className="centerPlease" sm={4}>
-        <animated.div
-          key={i}
-          style={{
-            transform: interpolate(
-              [x, y],
-              (x, y) => `translate3d(${x}px,${y}px,0)`
-            ),
-          }}
-        ></animated.div>
-        {
-          // This is the card itself, we're binding our gesture to it (and inject its index so we know which is which)
-        }
-        <animated.div
-          className="cardDisplay  xtraCSS"
-          {...bind(i)}
-          style={{
-            transform: interpolate([rot, scale], trans),
-            backgroundImage: `url(${memedisplay[i].image})`,
-          }}
-        />
-      </Col>
-    ));
-  } else {
-    return <div></div>;
-  }
-};
+    if (memedisplay.length > 0) {
+        
+        return props.map(({ x, y, rot, scale }, i) => (
+            <>
+            <Col className="xtraCSS centerPlease" sm={4}>
+                <animated.div className="cardDisplay2  " key={i} style={{ transform: interpolate([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`) }}>
+                {
+                    // This is the card itself, we're binding our gesture to it (and inject its index so we know which is which)
+                }
+                <animated.div className="cardDisplay  "  {...bind(i)} style={{ transform: interpolate([rot, scale], trans), backgroundImage: `url(${memedisplay[i].image})` }} />
+            </animated.div>
+            </Col>
+            </>
+        ))
+        
+    } else {
+            return (
+            <div></div>
+        )
+    }
+}
 
 export default Opened;
