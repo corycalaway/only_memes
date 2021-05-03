@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Jumbotron, Card } from "react-bootstrap";
+import { Container, Row, Col, Jumbotron, Card } from "react-bootstrap";
 
 const RenderUser = (params) => {
   let { user } = params;
@@ -10,7 +10,9 @@ const RenderUser = (params) => {
         <Container fluid>
           <Jumbotron>
             <Row className="justify-content-center">
-              <h3>Checking out {user.username}'s memes</h3>
+              <Col className="text-center">
+                <h3>Checking out {user.username}'s memes</h3>
+              </Col>
             </Row>
             <Row className="justify-content-center">
               {user.memes.map((meme) => (
