@@ -63,7 +63,7 @@ Licensed under the [MIT_License](LICENSE)
 
     - Cory Calaway
     - Email: cory.c.calaway@gmail.com
-    - GitHub: https://github.com/corycalaway/Portfolio
+    - GitHub: https://github.com/corycalaway
 
     - Kyle Condie
     - Email: barber.von.frankenshtien@gmail.com
